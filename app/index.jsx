@@ -1,18 +1,12 @@
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
+import { Router, hashHistory } from 'react-router';
 
-import '../css/index.scss';
+import Routes from './Router/Routes';
 
-class App extends React.Component {
+import 'normalize.css/normalize';
+import 'bootstrap/dist/css/bootstrap.min';
+import 'bootstrap/dist/css/bootstrap-theme.min';
+import '../assets/css/index';
 
-    render() {
-        return (
-            <div>
-                <h1>Hello React</h1>
-            </div>
-                );
-    }
-
-};
-
-render(<App />, document.getElementById('container'));
+render(<Router routes={Routes} history={hashHistory} />, document.getElementById('app'));

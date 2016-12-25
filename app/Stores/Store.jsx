@@ -6,10 +6,6 @@ class Store extends React.Component {
         this.state = { isSelected: false };
     }
 
-    componentWillMount() {
-        this.setState({ isSelected: false });
-    }
-
     selectStore(event) {
         event.preventDefault();
         this.props.selectStore(this.props.data, !this.state.isSelected);

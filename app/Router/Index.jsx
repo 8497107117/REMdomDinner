@@ -1,5 +1,6 @@
 import React from 'react';
 
+import List from '../List/List';
 import Stores from '../Stores/Stores';
 
 class Index extends React.Component {
@@ -30,7 +31,10 @@ class Index extends React.Component {
 
     render() {
         return (
-            <Stores selectStore={this.selectStore.bind(this)} />
+            <div>
+                <List storesData={this.state.selectedStore}/>
+                <Stores selectStore={this.selectStore.bind(this)} />
+            </div>
         );
     }
 };

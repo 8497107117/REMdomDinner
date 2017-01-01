@@ -20,10 +20,9 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state);
         Api.login(this.state)
             .done((data)=>{
-                console.log(data);
+                this.props.login(this.state, data);
             });
     }
 

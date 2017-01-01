@@ -1,5 +1,4 @@
 import React from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class List extends React.Component {
     constructor(props) {
@@ -7,18 +6,18 @@ class List extends React.Component {
     }
     renderListItem() {
         if(this.props.storesData.length == 0){
-            return (<ListGroupItem header="None">none</ListGroupItem>);
+            return (<li header="None">none</li>);
         }
         return this.props.storesData.map((storeData) => {
-            return (<ListGroupItem key={storeData.id} header={storeData.name}>{storeData.name}</ListGroupItem>);
+            return (<li key={storeData.id} header={storeData.name}>{storeData.name}</li>);
         });
     }
 
     render() {
         return (
-            <ListGroup>
+            <ul>
                 {this.renderListItem()}
-            </ListGroup>
+            </ul>
         );
     }
 };

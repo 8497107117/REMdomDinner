@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Api from '../Api';
 import Store from './Store';
 
 class Stores extends React.Component {
@@ -9,12 +9,15 @@ class Stores extends React.Component {
     }
 
     componentWillMount() {
-        this.setState({ storesData: [{ id: 1, name: 'Store1' }, { id: 2, name: 'Store2' }] });
+        Api.getStoreData()
+            .done((data) => {
+                this.setState({ storesData: data });
+            });
     }
 
     renderStoresData() {
         return this.state.storesData.map((storeData) => {
-            return (<Store key={storeData.id} data={storeData} selectStore={this.props.selectStore.bind(this)}/>);
+            return (<Store key={storeData.id} data={storeData} selectStore={this.props.selectStore.bind(this)} />);
         });
     }
 

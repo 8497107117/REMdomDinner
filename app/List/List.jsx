@@ -6,10 +6,10 @@ class List extends React.Component {
     }
     renderListItem() {
         if(this.props.storesData.length == 0){
-            return (<li header="None">none</li>);
+            return (<li>none</li>);
         }
         return this.props.storesData.map((storeData) => {
-            return (<li key={storeData.id} header={storeData.name}>{storeData.name}</li>);
+            return (<li key={storeData.id}>{storeData.name}</li>);
         });
     }
 

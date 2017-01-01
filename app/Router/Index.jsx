@@ -9,21 +9,24 @@ class Index extends React.Component {
         this.state = { selectedStore: [] };
     }
 
-    selectStore(data, isSelected) {
+    selectStore(data) {
         let selectedStore = this.state.selectedStore;
+        let isSelected = false;
+        let key = -1;
+
+        for (let i = 0; i < selectedStore.length; i++) {
+            if (selectedStore[i].id == data.id) {
+                key = i;
+                isSelected = true;
+                break;
+            }
+        }
         if (isSelected) {
-            selectedStore.push(data);
+            selectedStore.splice(key, 1)
             this.setState({ selectedStore });
         }
         else {
-            let key = -1;
-            for (let i = 0; i < selectedStore.length; i++) {
-                if (selectedStore[i].id == data.id) {
-                    key = i;
-                    break;
-                }
-            }
-            selectedStore.splice(key, 1)
+            selectedStore.push(data);
             this.setState({ selectedStore });
         }
         console.log(this.state.selectedStore);
@@ -32,7 +35,7 @@ class Index extends React.Component {
     render() {
         return (
             <div>
-                <List storesData={this.state.selectedStore}/>
+                <List storesData={this.state.selectedStore} />
                 <Stores selectStore={this.selectStore.bind(this)} />
             </div>
         );

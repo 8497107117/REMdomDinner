@@ -3,21 +3,22 @@ import React from 'react';
 class Store extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isSelected: false };
+        this.state = {};
     }
 
     selectStore(event) {
         event.preventDefault();
-        this.props.selectStore(this.props.data, !this.state.isSelected);
-        this.setState({ isSelected: !this.state.isSelected });
+        this.props.selectStore(this.props.data);
     }
 
     render() {
         return (
-            <figure onClick={this.selectStore.bind(this)}>
-                <figcaption>{this.props.data.name}</figcaption>
-                <img src="" alt={this.props.data.name} />
-            </figure>
+            <div onClick={this.selectStore.bind(this)}>
+                <div>{this.props.data.name}</div>
+                <div>{this.props.data.address}</div>
+                <div>{this.props.data.phone}</div>
+                <div>{this.props.data.avg_price}</div>
+            </div>
         );
     }
 };

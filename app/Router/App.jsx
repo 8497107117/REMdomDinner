@@ -6,6 +6,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = { auth: { isLogin: false } };
+        this.login = this.login.bind(this);
     }
 
     login(data, token) {

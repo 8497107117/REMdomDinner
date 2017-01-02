@@ -10,4 +10,15 @@ function getStoreData() {
         });
 }
 
-export default { getStoreData };
+function login(data) {
+    return $.ajax({
+        url: `${HOST}/api-token-auth/`,
+        method: 'POST',
+        data
+    })
+        .done((data) => {
+            return data.token;
+        });
+}
+
+export default { getStoreData, login };

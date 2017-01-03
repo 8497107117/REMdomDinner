@@ -29,7 +29,6 @@ class Index extends React.Component {
             selectedStore.push(data);
             this.setState({ selectedStore });
         }
-        console.log(this.state.selectedStore);
     }
 
     render() {

@@ -26,10 +26,9 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.data);
         Api.login(this.state.data)
             .done((data) => {
-                this.props.login(this.state.data, data);
+                this.props.login(this.state.data, data.token);
                 hashHistory.push('/');
             })
             .fail(() => {
@@ -49,9 +48,6 @@ class Login extends React.Component {
         let errMsg;
         if (this.state.isRequest) {
             errMsg = (<div>登入失敗</div>);
-        }
-        else {
-            errMsg = (<div></div>);
         }
         return (
             <div>

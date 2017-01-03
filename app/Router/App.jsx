@@ -7,6 +7,16 @@ class App extends React.Component {
         super(props);
         this.state = { auth: { isLogin: false } };
         this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+    }
+
+    componentWillMount() {
+        const auth = JSON.parse(localStorage.getItem('auth'));
+        if (auth !== null) {
+            if (auth.isLogin) {
+                this.setState({ auth });
+            }
+        }
     }
 
     login(data, token) {
@@ -17,6 +27,12 @@ class App extends React.Component {
                 token
             }
         });
+        localStorage.setItem('auth', JSON.stringify(this.state.auth));
+    }
+
+    logout() {
+        this.setState({ auth: { isLogin: false } });
+        localStorage.clear();
     }
 
     renderChildren(children) {
@@ -34,7 +50,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
+                <Navbar auth={this.state.auth} logout={this.logout}/>
                 {this.renderChildren(this.props.children)}
             </div>
         );

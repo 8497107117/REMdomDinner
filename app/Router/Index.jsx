@@ -31,10 +31,14 @@ class Index extends React.Component {
         }
     }
 
+    restSelected() {
+        this.setState({ selectedStore: [] });
+    }
+
     render() {
         return (
             <div>
-                <List unselected={this.selectStore.bind(this)} storesData={this.state.selectedStore} />
+                <List unselected={this.selectStore.bind(this)} resetSelected={this.restSelected.bind(this)} storesData={this.state.selectedStore} />
                 <Stores selectStore={this.selectStore.bind(this)} />
             </div>
         );

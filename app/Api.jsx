@@ -1,4 +1,4 @@
-const HOST = 'http://140.113.27.54:8001';
+const HOST = 'https://140.113.27.54:8001';
 
 function getStoreData() {
     return $.ajax({

@@ -13,8 +13,12 @@ class FavoriteList extends React.Component {
         this.setState({ isOpen });
     }
 
-    addFavoriteList() {
-        console.log("FFF");
+    removeStoreFromFavorite() {
+        console.log('remove store from favorite');
+    }
+
+    selectFavorite() {
+        this.props.selectFavorite(this.props.storesData);
     }
 
     renderFavoriteListItem() {
@@ -22,24 +26,21 @@ class FavoriteList extends React.Component {
             return (<li>無</li>);
         }
         return this.props.storesData.map((storeData) => {
-            return (<ListItem key={storeData.id} data={storeData} />);
+            return (<ListItem key={storeData.id} data={storeData} unselectStore={this.removeStoreFromFavorite.bind(this)} />);
         });
     }
 
     render() {
         let favoriteList;
         if (this.state.isOpen) {
-            favoriteList = (
-                <ul>
-                    {this.renderFavoriteListItem()}
-                </ul>
-            );
+            favoriteList = this.renderFavoriteListItem();
         }
         return (
-            <div className="list">
+            <ul>
                 <div onClick={this.changeListOpenState.bind(this)}>{this.props.listName}</div>
+                <button onClick={this.selectFavorite.bind(this)}></button>
                 {favoriteList}
-            </div>
+            </ul>
         );
     }
 };

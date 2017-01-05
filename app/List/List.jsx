@@ -10,17 +10,17 @@ class List extends React.Component {
     }
 
     componentWillMount() {
-        let favoriteList = [{ id: 1, listName: '好冷想喝湯', storesData: [] }, { id: 2, listName: '牛排R', storesData: [] }];
+        let favoriteList = [{ id: 1, listName: '好冷想喝湯', storesData: [{id:12,name:'二鍋'}, {id:8, name:'火鍋豪棒棒'}] }, { id: 2, listName: '牛排R', storesData: [{id:6,name:'87牛排館'}] }];
         this.setState({ favoriteList });
     }
 
-    randomDecide() {
-        let randomStore = this.props.storesData[Math.round(Math.random() * this.props.storesData.length)];
-        this.setState({ randomStore });
+    addFavoriteList(){
+        console.log('add favorite');
     }
 
-    addFavoriteList() {
-        console.log("FFF");
+    randomDecide() {
+        let randomStore = this.props.storesData[Math.floor(Math.random() * this.props.storesData.length)];
+        this.setState({ randomStore });
     }
 
     resetRandom() {
@@ -33,7 +33,7 @@ class List extends React.Component {
             return;
         }
         return this.state.favoriteList.map((listData) => {
-            return (<FavoriteList key={listData.id} listName={listData.listName} storesData={listData.storesData} />);
+            return (<FavoriteList key={listData.id} listName={listData.listName} storesData={listData.storesData} selectFavorite={this.props.selectFavorite.bind(this)}/>);
         });
     }
 

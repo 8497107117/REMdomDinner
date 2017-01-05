@@ -9,6 +9,13 @@ class Index extends React.Component {
         this.state = { selectedStore: [] };
     }
 
+    selectFavorite(storesData) {
+        let selectedStore = this.state.selectedStore;
+        storesData.map((storeData) => {
+            this.selectStore(storeData);
+        });
+    }
+
     selectStore(data) {
         let selectedStore = this.state.selectedStore;
         let isSelected = false;
@@ -50,7 +57,7 @@ class Index extends React.Component {
     render() {
         return (
             <div className="container">
-                <List unselectStore={this.unselectStore.bind(this)} resetSelected={this.restSelected.bind(this)} storesData={this.state.selectedStore} />
+                <List selectFavorite={this.selectFavorite.bind(this)} unselectStore={this.unselectStore.bind(this)} resetSelected={this.restSelected.bind(this)} storesData={this.state.selectedStore} />
                 <Stores selectStore={this.selectStore.bind(this)} />
             </div>
         );

@@ -1,9 +1,12 @@
 @mixin stores(){
     display: inline-block;
     width: 50%;
+    margin: 0 auto;
+    text-align: center;
 
     .store{
         display: inline-block;
-        width: 33%;
+        width: 25%;
+        margin: 10px;
     }
 }

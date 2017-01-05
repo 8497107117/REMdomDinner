@@ -13,6 +13,10 @@ class List extends React.Component {
         this.setState({ randomStore });
     }
 
+    addFavoriteList() {
+        console.log("FFF");
+    }
+
     resetRandom() {
         this.setState({ randomStore: {} });
         this.props.resetSelected();
@@ -40,6 +44,7 @@ class List extends React.Component {
             randomButton = (
                 <div>
                     <button onClick={this.randomDecide.bind(this)}>隨機</button>
+                    <button onClick={this.addFavoriteList.bind(this)}>加入</button>
                     <button onClick={this.resetRandom.bind(this)}>清除</button>
                 </div>
             );

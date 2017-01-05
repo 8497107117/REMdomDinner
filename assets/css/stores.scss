@@ -1,4 +1,9 @@
 @mixin stores(){
     display: inline-block;
     width: 50%;
+
+    .store{
+        display: inline-block;
+        width: 33%;
+    }
 }

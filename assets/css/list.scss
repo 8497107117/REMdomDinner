@@ -1,4 +1,8 @@
 @mixin list(){
     display: inline-block;
     width: 50%;
+    vertical-align: top;
+    ul{
+        list-style: none;
+    }
 }

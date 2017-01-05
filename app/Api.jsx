@@ -1,4 +1,4 @@
-const HOST = 'https://140.113.27.54:8001';
+const HOST = 'https://remdomdinner.nctu.me';
 
 function getStoreData() {
     return $.ajax({

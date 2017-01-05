@@ -17,6 +17,7 @@ class Stores extends React.Component {
     componentWillMount() {
         Api.getStoreData()
             .done((data) => {
+                console.log(data);
                 if(data)
                     this.setState({ storesData: data });
             });

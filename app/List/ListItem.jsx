@@ -12,7 +12,12 @@ class ListItem extends React.Component {
 
     render() {
         return (
-            <li onClick={this.unselectStore.bind(this)}>{this.props.data.name}</li>
+            <li>
+                <div>
+                    {this.props.data.name}
+                </div>
+                <button onClick={this.unselectStore.bind(this)}></button>
+            </li>
         );
     }
 };

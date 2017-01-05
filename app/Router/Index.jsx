@@ -19,13 +19,13 @@ class Index extends React.Component {
                 break;
             }
         }
-        if(!isSelected) {
+        if (!isSelected) {
             selectedStore.push(data);
             this.setState({ selectedStore });
         }
     }
 
-    unselectStore(data){
+    unselectStore(data) {
         let selectedStore = this.state.selectedStore;
         let isSelected = false;
         let key = -1;

@@ -1,11 +1,17 @@
 import React from 'react';
 
+import FavoriteList from './FavoriteList';
 import ListItem from './ListItem';
 
 class List extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { randomStore: {} };
+        this.state = { randomStore: {}, favoriteList: {} };
+    }
+
+    componentWillMount() {
+        let favoriteList = [{ id: 1, listName: '好冷想喝湯', storesData: [] }, { id: 2, listName: '牛排R', storesData: [] }];
+        this.setState({ favoriteList });
     }
 
     randomDecide() {
@@ -22,9 +28,18 @@ class List extends React.Component {
         this.props.resetSelected();
     }
 
+    renderFavoriteList() {
+        if (Object.keys(this.state.favoriteList).length === 0) {
+            return;
+        }
+        return this.state.favoriteList.map((listData) => {
+            return (<FavoriteList key={listData.id} listName={listData.listName} storesData={listData.storesData} />);
+        });
+    }
+
     renderListItem() {
         if (this.props.storesData.length == 0) {
-            return (<li>none</li>);
+            return (<li>無選擇</li>);
         }
         return this.props.storesData.map((storeData) => {
             return (<ListItem key={storeData.id} data={storeData} unselectStore={this.props.unselectStore.bind(this)} />);
@@ -51,6 +66,7 @@ class List extends React.Component {
         }
         return (
             <div className="list">
+                {this.renderFavoriteList()}
                 {randomStore}
                 {randomButton}
                 < ul >

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --colors --output-pathinfo --debug",
-    "dev": "webpack-dev-server --progress --colors --devtool eval --hot --inline --output-public-path=/src/build/"
+    "dev": "webpack-dev-server --progress --colors --devtool eval --hot --inline --output-public-path=/build/"
   },
   "repository": {
     "type": "git",

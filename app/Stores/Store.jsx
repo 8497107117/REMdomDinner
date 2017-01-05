@@ -13,7 +13,7 @@ class Store extends React.Component {
 
     render() {
         return (
-            <div onClick={this.selectStore.bind(this)}>
+            <div className="store" onClick={this.selectStore.bind(this)}>
                 <div>{this.props.data.name}</div>
                 <div>{this.props.data.address}</div>
                 <div>{this.props.data.phone}</div>

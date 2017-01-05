@@ -37,7 +37,7 @@ class Index extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <List unselected={this.selectStore.bind(this)} resetSelected={this.restSelected.bind(this)} storesData={this.state.selectedStore} />
                 <Stores selectStore={this.selectStore.bind(this)} />
             </div>

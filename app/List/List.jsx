@@ -45,7 +45,7 @@ class List extends React.Component {
             );
         }
         return (
-            <div>
+            <div className="list">
                 {randomStore}
                 {randomButton}
                 < ul >

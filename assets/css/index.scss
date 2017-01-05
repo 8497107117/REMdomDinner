@@ -1,5 +1,19 @@
+@import "./list.scss";
+@import "./stores.scss";
+
 body{
     h1{
         color: red;
+    }
+    .container{
+        padding: 0 5%;
+        margin: 0 auto;
+        .list{
+            @include list();
+        }
+
+        .stores{
+            @include stores();
+        }
     }
 }

@@ -37,12 +37,16 @@ class App extends React.Component {
 
     renderChildren(children) {
         return React.Children.map(children, (child) => {
-            if (child.type === Login)
+            if (child.type === Login){
                 return React.cloneElement(child, {
-                    login: this.login
-                })
+                    login: this.login,
+                    auth: this.state.auth
+                });
+            }
             else {
-                return child;
+                return React.cloneElement(child, {
+                    auth: this.state.auth
+                });
             }
         })
     }
@@ -50,7 +54,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Navbar auth={this.state.auth} logout={this.logout}/>
+                <Navbar auth={this.state.auth} logout={this.logout} />
                 {this.renderChildren(this.props.children)}
             </div>
         );

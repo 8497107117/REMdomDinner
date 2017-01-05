@@ -5,20 +5,13 @@ import Store from './Store';
 class Stores extends React.Component {
     constructor(props) {
         super(props);
-        let defaultData = [
-            {id: 1, name: "a", address: "hsinchu", phone: "888", avg_price: "100"},
-            {id: 2, name: "b", address: "hsinchu", phone: "888", avg_price: "100"},
-            {id: 3, name: "c", address: "hsinchu", phone: "888", avg_price: "100"},
-            {id: 4, name: "d", address: "hsinchu", phone: "888", avg_price: "100"},
-        ];
-        this.state = { storesData: defaultData };
+        this.state = { storesData: [] };
     }
 
     componentWillMount() {
         Api.getStoreData()
             .done((data) => {
-                console.log(data);
-                if(data)
+                if (data)
                     this.setState({ storesData: data });
             });
     }

@@ -8,6 +8,7 @@ body{
     .container{
         padding: 0 5%;
         margin: 0 auto;
+        height: 90vh;
         .list{
             @include list();
         }

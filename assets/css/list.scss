@@ -1,8 +1,24 @@
 @mixin list(){
     display: inline-block;
     width: 50%;
+    height: 100%;
+    overflow: scroll;
     vertical-align: top;
     ul{
         list-style: none;
+
+        li{
+            text-align: center;
+            width: 50%;
+            padding: 10px 0;
+            margin: 2px 0;
+            border: 1px solid black;
+            border-radius: 15px 50px;
+            transition: all 0.1s linear;
+            
+            &:hover{
+                transform: translate(5%);
+            }
+        }
     }
 }

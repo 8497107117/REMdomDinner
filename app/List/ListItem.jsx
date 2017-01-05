@@ -5,14 +5,14 @@ class ListItem extends React.Component {
         super(props);
     }
 
-    unselected() {
+    unselectStore() {
         event.preventDefault();
-        this.props.unselected(this.props.data);
+        this.props.unselectStore(this.props.data);
     }
 
     render() {
         return (
-            <li onClick={this.unselected.bind(this)}>{this.props.data.name}</li>
+            <li onClick={this.unselectStore.bind(this)}>{this.props.data.name}</li>
         );
     }
 };

@@ -23,7 +23,7 @@ class List extends React.Component {
             return (<li>none</li>);
         }
         return this.props.storesData.map((storeData) => {
-            return (<ListItem key={storeData.id} data={storeData} unselected={this.props.unselected.bind(this)} />);
+            return (<ListItem key={storeData.id} data={storeData} unselectStore={this.props.unselectStore.bind(this)} />);
         });
     }
 

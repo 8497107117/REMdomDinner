@@ -2,7 +2,7 @@ const HOST = 'https://remdomdinner.nctu.me';
 
 function getStoreData() {
     return $.ajax({
-        url: `${HOST}/stores/`,
+        url: `${HOST}/stores/list`,
         method: 'GET'
     })
         .done((data) => {

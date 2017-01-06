@@ -10,15 +10,18 @@ class NavbarInstance extends React.Component {
         </div>
       ) :
       (
-        <div>
+        <div className="menu">
           <a href="#/auth/login">登入</a>
+          <a href="#/auth/register">註冊</a>
         </div>
       );
     return (
-      <div>
-        <a href="#/">REMdomDinner</a>
+      <nav>
+        <a href="#/">
+            <img src="../assets/img/title.png" />
+        </a>
         {log}
-      </div>
+      </nav>
     );
   }
 }

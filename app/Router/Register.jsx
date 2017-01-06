@@ -2,13 +2,14 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 import Api from '../Api';
 
-class Login extends React.Component {
+class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             data: {
                 username: '',
-                password: ''
+                password: '',
+                email: ''
             },
             isRequest: false
         };
@@ -25,7 +26,8 @@ class Login extends React.Component {
         this.setState({
             data: {
                 username: this.refs.username.value,
-                password: this.refs.password.value
+                password: this.refs.password.value,
+                email: this.refs.email.value
             }
         });
     }
@@ -40,10 +42,12 @@ class Login extends React.Component {
             .fail(() => {
                 $("input[type=text]").val('');
                 $("input[type=password]").val('');
+                $("input[type=email]").val('');
                 this.setState({
                     data: {
                         username: '',
-                        password: ''
+                        password: '',
+                        email: ''
                     },
                     isRequest: true
                 });
@@ -53,7 +57,7 @@ class Login extends React.Component {
     render() {
         let errMsg;
         if (this.state.isRequest) {
-            errMsg = (<div>登入失敗</div>);
+            errMsg = (<div>註冊失敗</div>);
         }
         return (
             <div>
@@ -62,7 +66,9 @@ class Login extends React.Component {
                     <input type="text" name="username" placeholder="請輸入使用者帳號" ref="username" onChange={this.handleChange.bind(this)} />
                     <label htmlFor="password">密碼</label>
                     <input type="password" name="password" placeholder="請輸入密碼" ref="password" onChange={this.handleChange.bind(this)} />
-                    <button onClick={this.handleSubmit.bind(this)}>登入</button>
+                    <label htmlFor="email">信箱</label>
+                    <input type="email" name="email" placeholder="請輸入信箱" ref="email" onChange={this.handleChange.bind(this)} />
+                    <button onClick={this.handleSubmit.bind(this)}>註冊</button>
                 </form>
                 {errMsg}
             </div>
@@ -70,4 +76,4 @@ class Login extends React.Component {
     }
 };
 
-export default Login;
+export default Register;

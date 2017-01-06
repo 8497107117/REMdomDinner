@@ -1,0 +1,22 @@
+@mixin nav(){
+
+    text-align: center;
+    height: 10%;
+    width: 100%;
+    position: absolute;
+    
+    a{
+        img{
+            height: 200px;
+        }
+    }
+
+    .menu{
+        position: absolute;
+        float: left;
+        top: 0;
+        a{
+            display: block;
+        }
+    }
+}

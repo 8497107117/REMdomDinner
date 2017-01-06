@@ -1,14 +1,23 @@
 @import "./list.scss";
 @import "./stores.scss";
+@import "./nav.scss";
 
 body{
     h1{
         color: red;
     }
+
+    nav{
+        @include nav();
+    }
+
     .container{
         padding: 0 5%;
         margin: 0 auto;
-        height: 90vh;
+        height: 80vh;
+        position: relative;
+        top: 15vh;
+
         .list{
             @include list();
         }

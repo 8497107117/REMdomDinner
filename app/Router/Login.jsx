@@ -14,6 +14,12 @@ class Login extends React.Component {
         };
     }
 
+    componentWillMount() {
+        if (this.props.auth.isLogin) {
+            hashHistory.goBack();
+        }
+    }
+
     handleChange(event) {
         event.preventDefault();
         this.setState({

@@ -1,5 +1,4 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
 import Api from '../Api';
 
 class Register extends React.Component {
@@ -13,12 +12,6 @@ class Register extends React.Component {
             },
             isRequest: false
         };
-    }
-
-    componentWillMount() {
-        if (this.props.auth.isLogin) {
-            hashHistory.goBack();
-        }
     }
 
     handleChange(event) {
@@ -36,12 +29,9 @@ class Register extends React.Component {
         event.preventDefault();
         Api.register(this.state.data)
             .done((data) => {
-                hashHistory.push('/');
+                this.props.register();
             })
             .fail((data) => {
-                $("input[type=text]").val('');
-                $("input[type=password]").val('');
-                $("input[type=email]").val('');
                 this.setState({
                     data: {
                         username: '',
@@ -51,6 +41,9 @@ class Register extends React.Component {
                     isRequest: true
                 });
             });
+        $("input[type=text]").val('');
+        $("input[type=password]").val('');
+        $("input[type=email]").val('');
     }
 
     render() {

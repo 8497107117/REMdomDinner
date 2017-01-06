@@ -1,6 +1,5 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Login from './Login';
+import Navbar from './Navbar/Navbar';
 
 class App extends React.Component {
     constructor(props) {
@@ -37,7 +36,7 @@ class App extends React.Component {
 
     renderChildren(children) {
         return React.Children.map(children, (child) => {
-            if (child.type === Login){
+            if (child.type === Login) {
                 return React.cloneElement(child, {
                     login: this.login,
                     auth: this.state.auth
@@ -54,8 +53,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Navbar auth={this.state.auth} logout={this.logout} />
-                {this.renderChildren(this.props.children)}
+                <Navbar auth={this.state.auth} login={this.login.bind(this)} logout={this.logout.bind(this)} />
             </div>
         );
     }

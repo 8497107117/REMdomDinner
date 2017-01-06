@@ -34,12 +34,13 @@ class Register extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        Api.login(this.state.data)
+        Api.register(this.state.data)
             .done((data) => {
-                this.props.login(this.state.data, data.token);
-                hashHistory.push('/');
+                //hashHistory.push('/');
+                console.log(data);
             })
-            .fail(() => {
+            .fail((data) => {
+                console.log(data);
                 $("input[type=text]").val('');
                 $("input[type=password]").val('');
                 $("input[type=email]").val('');

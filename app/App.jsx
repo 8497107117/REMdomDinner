@@ -1,10 +1,11 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
+import Stores from './Stores/Stores';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { auth: { isLogin: false } };
+        this.state = { auth: { isLogin: false }, selectedStore: [] };
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
     }
@@ -34,6 +35,22 @@ class App extends React.Component {
         localStorage.clear();
     }
 
+    selectStore(data) {
+        let selectedStore = this.state.selectedStore;
+        let isSelected = false;
+
+        for (let i = 0; i < selectedStore.length; i++) {
+            if (selectedStore[i].id == data.id) {
+                isSelected = true;
+                break;
+            }
+        }
+        if (!isSelected) {
+            selectedStore.push(data);
+            this.setState({ selectedStore });
+        }
+    }
+
     renderChildren(children) {
         return React.Children.map(children, (child) => {
             if (child.type === Login) {
@@ -54,6 +71,9 @@ class App extends React.Component {
         return (
             <div>
                 <Navbar auth={this.state.auth} login={this.login.bind(this)} logout={this.logout.bind(this)} />
+                <div className="container">
+                    <Stores auth={this.state.auth} selectStore={this.selectStore.bind(this)} />
+                </div>
             </div>
         );
     }

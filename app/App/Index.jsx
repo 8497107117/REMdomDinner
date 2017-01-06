@@ -16,22 +16,6 @@ class Index extends React.Component {
         });
     }
 
-    selectStore(data) {
-        let selectedStore = this.state.selectedStore;
-        let isSelected = false;
-
-        for (let i = 0; i < selectedStore.length; i++) {
-            if (selectedStore[i].id == data.id) {
-                isSelected = true;
-                break;
-            }
-        }
-        if (!isSelected) {
-            selectedStore.push(data);
-            this.setState({ selectedStore });
-        }
-    }
-
     unselectStore(data) {
         let selectedStore = this.state.selectedStore;
         let isSelected = false;

@@ -58,7 +58,7 @@ class Index extends React.Component {
         return (
             <div className="container">
                 <List auth={this.props.auth} selectFavorite={this.selectFavorite.bind(this)} unselectStore={this.unselectStore.bind(this)} resetSelected={this.restSelected.bind(this)} storesData={this.state.selectedStore} />
-                <Stores selectStore={this.selectStore.bind(this)} />
+                <Stores auth={this.props.auth} selectStore={this.selectStore.bind(this)} />
             </div>
         );
     }

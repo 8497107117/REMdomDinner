@@ -21,4 +21,15 @@ function login(data) {
         });
 }
 
-export default { getStoreData, login };
+function register(data) {
+    return $.ajax({
+        url: `${HOST}/users/create-account/`,
+        method: 'POST',
+        data
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
+export default { getStoreData, login, register };

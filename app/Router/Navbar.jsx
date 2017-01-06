@@ -4,7 +4,7 @@ class NavbarInstance extends React.Component {
   render() {
     let log = this.props.auth.isLogin ?
       (
-        <div>
+        <div className="menu">
           <div>吃晚餐囉 {this.props.auth.username}</div>
           <a href="#/" onClick={this.props.logout.bind(this)}>登出</a>
         </div>

@@ -11,12 +11,16 @@ body{
         @include nav();
     }
 
+    .menu{
+        z-index: 100;
+    }
+
     .container{
         padding: 0 5%;
         margin: 0 auto;
         height: 80vh;
         position: relative;
-        top: 15vh;
+        top: 13vh;
 
         .list{
             @include list();

@@ -49,8 +49,12 @@ class List extends React.Component {
     }
 
     render() {
+        let favoriteList;
         let randomStore;
         let listButton;
+        if(this.props.auth.isLogin){
+            favoriteList = this.renderFavoriteList();
+        }
         if (Object.keys(this.state.randomStore).length === 0 && this.state.randomStore.constructor === Object) {
             randomStore = <div>請選擇</div>;
         }
@@ -77,7 +81,7 @@ class List extends React.Component {
         }
         return (
             <div className="list">
-                {this.renderFavoriteList()}
+                {favoriteList}
                 {randomStore}
                 {listButton}
                 < ul >

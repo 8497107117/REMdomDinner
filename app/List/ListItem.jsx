@@ -16,7 +16,9 @@ class ListItem extends React.Component {
                 <div>
                     {this.props.data.name}
                 </div>
-                <div className="list-remove-icon" onClick={this.unselectStore.bind(this)}></div>
+                <div className="shake-ani">
+                    <div className="list-remove-icon" onClick={this.unselectStore.bind(this)}></div>
+                </div>
             </li>
         );
     }

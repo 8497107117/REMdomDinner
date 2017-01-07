@@ -12,6 +12,7 @@ const config = {
     ],
     output: {
         path: BUILD_DIR,
+        publicPath: 'build/',
         filename: '/bundle.js'
     },
     module : {
@@ -33,7 +34,7 @@ const config = {
                 loader: 'style!css!sass'
             },
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
+                test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/, 
                 loader: 'url-loader?limit=100000',
                 exclude: /node_modules/,
             }

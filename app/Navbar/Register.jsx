@@ -67,17 +67,17 @@ class Register extends React.Component {
     render() {
         return (
             <div>
-                <div className="ui basic register form modal">
+                <form className="ui basic register form modal">
                     <div className="header">註冊</div>
-                    <div className="ui input">
+                    <div className="field">
                         <label htmlFor="username">使用者帳號</label>
                         <input type="text" name="username" placeholder="請輸入使用者帳號" ref="username" onChange={this.handleChange.bind(this)} />
                     </div>
-                    <div className="ui input">
+                    <div className="field">
                         <label htmlFor="password">密碼</label>
                         <input type="password" name="password" placeholder="請輸入密碼" ref="password" onChange={this.handleChange.bind(this)} />
                     </div>
-                    <div className="ui input">
+                    <div className="field">
                         <label htmlFor="email">信箱</label>
                         <input type="email" name="email" placeholder="請輸入信箱" ref="email" onChange={this.handleChange.bind(this)} />
                     </div>
@@ -91,7 +91,7 @@ class Register extends React.Component {
 					        </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div className="ui small basic register warning modal">
                     <div className="header">註冊失敗</div>
                     <div className="actions">

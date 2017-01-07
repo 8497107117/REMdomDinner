@@ -64,13 +64,13 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <div className="ui basic login form modal">
+                <form className="ui basic login form modal">
                     <div className="header">登入</div>
-                    <div className="ui input">
+                    <div className="field">
                         <label htmlFor="username">使用者帳號</label>
                         <input type="text" name="username" placeholder="請輸入使用者帳號" ref="username" onChange={this.handleChange.bind(this)} />
                     </div>
-                    <div className="ui input">
+                    <div className="field">
                         <label htmlFor="password">密碼</label>
                         <input type="password" name="password" placeholder="請輸入密碼" ref="password" onChange={this.handleChange.bind(this)} />
                     </div>
@@ -84,7 +84,7 @@ class Login extends React.Component {
 					        </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div className="ui small basic login warning modal">
                     <div className="header">登入失敗</div>
                     <div className="actions">

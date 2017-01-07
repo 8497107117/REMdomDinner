@@ -14,6 +14,20 @@ function addFavoriteList(data, token) {
         });
 }
 
+function addStore(data, token) {
+    return $.ajax({
+        url: `${HOST}/stores/add/`,
+        method: 'POST',
+        data,
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
 function getFavoriteLists(token) {
     return $.ajax({
         url: `${HOST}/favlist/get/`,
@@ -27,9 +41,29 @@ function getFavoriteLists(token) {
         });
 }
 
-function getStoreData() {
+function getAreaType() {
+    return $.ajax({
+        url: `${HOST}/area/`,
+        method: 'GET'
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
+function getStoresData() {
     return $.ajax({
         url: `${HOST}/stores/list/`,
+        method: 'GET'
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
+function getStoresType() {
+    return $.ajax({
+        url: `${HOST}/storetype/`,
         method: 'GET'
     })
         .done((data) => {
@@ -70,4 +104,13 @@ function register(data) {
         });
 }
 
-export default { getFavoriteLists, getStoreData, login, refreshToken, register };
+export default {
+    addStore,
+    getAreaType,
+    getFavoriteLists,
+    getStoresData,
+    getStoresType,
+    login,
+    refreshToken,
+    register
+};

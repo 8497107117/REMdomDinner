@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Api from '../Api';
 import FavoriteList from './FavoriteList';
 import ListItem from './ListItem';
 
@@ -9,9 +9,14 @@ class List extends React.Component {
         this.state = { randomStore: {}, favoriteList: {} };
     }
 
-    componentWillMount() {
-        let favoriteList = [{ id: 1, listName: '好冷想喝湯', storesData: [{ id: 12, name: '二鍋' }, { id: 8, name: '火鍋豪棒棒' }] }, { id: 2, listName: '牛排R', storesData: [{ id: 6, name: '87牛排館' }] }];
-        this.setState({ favoriteList });
+    componentDidMount() {
+        if (this.props.auth.isLogin) {
+            Api.getFavoriteLists(this.props.auth.token)
+                .done((data)=>{
+                    console.log(data);
+                });
+        }
+        //this.setState({ favoriteList });
     }
 
     addFavoriteList(event) {
@@ -52,7 +57,7 @@ class List extends React.Component {
         let favoriteList;
         let randomStore;
         let listButton;
-        if(this.props.auth.isLogin){
+        if (this.props.auth.isLogin) {
             favoriteList = this.renderFavoriteList();
         }
         if (Object.keys(this.state.randomStore).length === 0 && this.state.randomStore.constructor === Object) {

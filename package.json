@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --colors --output-pathinfo --debug",
-    "dev": "webpack-dev-server --progress --colors --devtool eval --hot --inline --output-public-path=/build/ --host 0.0.0.0 --port 8080"
+    "dev": "webpack-dev-server --progress --colors --devtool eval --hot --inline --output-public-path=/build/"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
     "normalize.css": "^5.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-router": "^3.0.0",
     "sass-loader": "^4.0.2",
     "shortid": "^2.2.6",
     "style-loader": "^0.13.1"

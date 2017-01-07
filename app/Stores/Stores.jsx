@@ -8,22 +8,23 @@ class Stores extends React.Component {
         this.state = { storesData: [] };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         Api.getStoreData()
             .done((data) => {
-                this.setState({ storesData: data });
+                if (data)
+                    this.setState({ storesData: data });
             });
     }
 
     renderStoresData() {
         return this.state.storesData.map((storeData) => {
-            return (<Store key={storeData.id} data={storeData} selectStore={this.props.selectStore.bind(this)} />);
+            return (<Store key={storeData.id} auth={this.props.auth} data={storeData} selectStore={this.props.selectStore.bind(this)} />);
         });
     }
 
     render() {
         return (
-            <div>
+            <div className="stores">
                 {this.renderStoresData()}
             </div>
         );

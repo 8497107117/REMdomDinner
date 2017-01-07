@@ -1,5 +1,33 @@
+@import "./list.scss";
+@import "./stores.scss";
+@import "./nav.scss";
+
 body{
     h1{
         color: red;
+    }
+
+    nav{
+        @include nav();
+    }
+
+    .menu{
+        z-index: 100;
+    }
+
+    .container{
+        padding: 0 5%;
+        margin: 0 auto;
+        height: 80vh;
+        position: relative;
+        top: 13vh;
+
+        .list{
+            @include list();
+        }
+
+        .stores{
+            @include stores();
+        }
     }
 }

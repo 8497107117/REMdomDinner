@@ -1,0 +1,45 @@
+@mixin list(){
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    overflow: scroll;
+    vertical-align: top;
+    background: rgba(206, 206, 255, 0.5);
+
+    ul{
+        list-style: none;
+
+        li{
+            text-align: center;
+            width: 50%;
+            //padding: 10px 0;
+            height: 40px;
+            margin: 5px 0;
+            border: 1px solid black;
+            border-radius: 15px 50px;
+            transition: all 0.1s linear;
+            overflow: hidden;
+
+            div{
+                display: inline-block;
+            }
+
+            div:first-child{
+                margin-top: 10px;
+            }
+            
+            .list-remove-icon{
+                position: relative;
+                float: right;
+                width: 40px;
+                height: 40px;
+                background: white;
+                border-radius: 0 50px 15px 0;
+            }
+
+            &:hover{
+                transform: translate(5%);
+            }
+        }
+    }
+}

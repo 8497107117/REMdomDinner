@@ -1,8 +1,36 @@
-const HOST = 'https://140.113.27.54:8001';
+const HOST = 'https://remdomdinner.nctu.me';
+
+function addFavoriteList(data, token){
+    return $.ajax({
+        url: `${HOST}/favlist/add/`,
+        method: 'POST',
+        data,
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
+function getFavoriteLists(token) {
+    console.log(token);
+    return $.ajax({
+        url: `${HOST}/favlist/get/`,
+        method: 'GET',
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
 
 function getStoreData() {
     return $.ajax({
-        url: `${HOST}/stores/`,
+        url: `${HOST}/stores/list/`,
         method: 'GET'
     })
         .done((data) => {
@@ -21,4 +49,15 @@ function login(data) {
         });
 }
 
-export default { getStoreData, login };
+function register(data) {
+    return $.ajax({
+        url: `${HOST}/users/create-account/`,
+        method: 'POST',
+        data
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
+export default { getFavoriteLists, getStoreData, login, register };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
 import Api from '../Api';
 
 class Login extends React.Component {
@@ -29,11 +28,8 @@ class Login extends React.Component {
         Api.login(this.state.data)
             .done((data) => {
                 this.props.login(this.state.data, data.token);
-                hashHistory.push('/');
             })
             .fail(() => {
-                $("input[type=text]").val('');
-                $("input[type=password]").val('');
                 this.setState({
                     data: {
                         username: '',
@@ -42,6 +38,8 @@ class Login extends React.Component {
                     isRequest: true
                 });
             });
+        $("input[type=text]").val('');
+        $("input[type=password]").val('');
     }
 
     render() {
@@ -50,7 +48,7 @@ class Login extends React.Component {
             errMsg = (<div>登入失敗</div>);
         }
         return (
-            <div>
+            <div className="menu">
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <label htmlFor="username">使用者帳號</label>
                     <input type="text" name="username" placeholder="請輸入使用者帳號" ref="username" onChange={this.handleChange.bind(this)} />

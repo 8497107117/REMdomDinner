@@ -7,7 +7,7 @@ import Stores from './Stores/Stores';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { auth: { isLogin: false }, selectedStore: [] };
+        this.state = { auth: { isLogin: false }, selectedStore: [], favoriteList: [] };
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
     }
@@ -23,12 +23,20 @@ class App extends React.Component {
 
     componentDidMount() {
         if (this.state.auth.isLogin) {
+            this.getFavoriteLists();
             this.interval = setInterval(() => this.refreshToken(), 300000);
         }
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    getFavoriteLists() {
+        Api.getFavoriteLists(this.state.auth.token)
+            .done((favoriteList) => {
+                this.setState({ favoriteList });
+            });
     }
 
     login(data, token) {
@@ -39,12 +47,13 @@ class App extends React.Component {
                 token
             }
         });
+        this.getFavoriteLists();
         localStorage.setItem('auth', JSON.stringify(this.state.auth));
         this.interval = setInterval(() => this.refreshToken(), 300000);
     }
 
     logout() {
-        this.setState({ auth: { isLogin: false } });
+        this.setState({ auth: { isLogin: false }, favoriteList: [] });
         localStorage.clear();
         clearInterval(this.interval);
     }
@@ -104,29 +113,25 @@ class App extends React.Component {
         }
     }
 
-    renderChildren(children) {
-        return React.Children.map(children, (child) => {
-            if (child.type === Login) {
-                return React.cloneElement(child, {
-                    login: this.login,
-                    auth: this.state.auth
-                });
-            }
-            else {
-                return React.cloneElement(child, {
-                    auth: this.state.auth
-                });
-            }
-        })
-    }
-
     render() {
+        let listProps = {
+            auth: this.state.auth,
+            favoriteList: this.state.favoriteList,
+            selectFavorite: this.selectFavorite.bind(this),
+            unselectStore: this.unselectStore.bind(this),
+            resetSelected: this.restSelected.bind(this),
+            storesData: this.state.selectedStore
+        };
+        let storesProps = {
+            auth: this.state.auth,
+            selectStore: this.selectStore.bind(this)
+        }
         return (
             <div>
                 <Navbar auth={this.state.auth} login={this.login.bind(this)} logout={this.logout.bind(this)} />
                 <div className="container">
-                    <List auth={this.state.auth} selectFavorite={this.selectFavorite.bind(this)} unselectStore={this.unselectStore.bind(this)} resetSelected={this.restSelected.bind(this)} storesData={this.state.selectedStore} />
-                    <Stores auth={this.state.auth} selectStore={this.selectStore.bind(this)} />
+                    <List {...listProps} />
+                    <Stores {...storesProps} />
                 </div>
             </div>
         );

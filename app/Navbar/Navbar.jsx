@@ -71,7 +71,7 @@ class Navbar extends React.Component {
         return (
             <nav>
                 <a>
-                  <img src="../assets/img/title.png" />
+                  <img src="assets/img/title.png" />
                 </a>
                 {nav}
                 {login}

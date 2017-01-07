@@ -31,6 +31,11 @@ const config = {
                 include: CSS_DIR,
                 exclude: /node_modules/,
                 loader: 'style!css!sass'
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
+                loader: 'url-loader?limit=100000',
+                exclude: /node_modules/,
             }
         ]
     },

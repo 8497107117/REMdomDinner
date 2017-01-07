@@ -29,24 +29,36 @@
                 margin-top: 10px;
             }
             
-            .list-remove-icon{
+            .shake-ani{
                 position: relative;
                 float: right;
                 width: 40px;
                 height: 40px;
-                border-radius: 0 50px 15px 0;
-                background-image: url("../img/x.png");
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center center;
                 background-color: transparent;
                 
-                @keyframes x-btn{
-                    0%  {background-color: rgba(255, 255, 255, 0);}
-                    50% {background-color: rgba(255, 255, 255, 0.2);}
-                    100%  {background-color: rgba(255, 255, 255, 0);}
-                }
+                .list-remove-icon{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 0 50px 15px 0;
+                    background-image: url("../img/x.png");
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    margin: 0;
+                    
+                    @keyframes x-btn{
+                        0%  {background-color: rgba(255, 255, 255, 0);}
+                        50% {background-color: rgba(255, 255, 255, 0.2);}
+                        100%  {background-color: rgba(255, 255, 255, 0);}
+                    }
 
+                    &:hover{
+                        animation-name: x-btn;
+                        animation-duration: 1s;
+                        animation-iteration-count: infinite;                    
+                    }
+
+                }
                 @keyframes x-shake{
                     0%  {transform: rotate(0deg);}
                     33% {transform: rotate(10deg)}
@@ -55,16 +67,14 @@
                 }
 
                 &:hover{
-                    animation-name: x-btn;
-                    animation-duration: 1s;
-                    animation-iteration-count: infinite;                    
                     
                     animation-name: x-shake;
                     animation-delay: 0.4s;
-                    animation-duration: 0.2s;
+                    animation-duration: 0.15s;
                     animation-iteration-count: 3;                    
                 }
             }
+
 
             &:hover{
                 transform: translate(5%);

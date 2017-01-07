@@ -28,6 +28,19 @@ function addStore(data, token) {
         });
 }
 
+function deleteStore(id, token){
+    return $.ajax({
+        url: `${HOST}/stores/${id}/delete/`,
+        method: 'DELETE',
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
 function getFavoriteLists(token) {
     return $.ajax({
         url: `${HOST}/favlist/get/`,
@@ -106,6 +119,7 @@ function register(data) {
 
 export default {
     addStore,
+    deleteStore,
     getAreaType,
     getFavoriteLists,
     getStoresData,

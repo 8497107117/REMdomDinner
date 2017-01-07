@@ -1,9 +1,17 @@
 import React from 'react';
+import Api from '../Api';
 
 class Store extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isOpen: false };
+    }
+
+    deleteStore() {
+        Api.deleteStore(this.props.data.id, this.props.auth.token)
+            .done((data)=>{
+                this.props.afterDelete();
+            });
     }
 
     selectStore(event) {
@@ -22,14 +30,14 @@ class Store extends React.Component {
             modifyButton = (
                 <div>
                     <button>修改</button>
-                    <button>刪除</button>
+                    <button onClick={this.deleteStore.bind(this)}>刪除</button>
                 </div>
             );
         }
         return modifyButton;
     }
 
-    renderStoreInfo(){
+    renderStoreInfo() {
         let storeInfo;
         let type = this.props.data.type ? <div>{this.props.data.type__name}</div> : <div>無</div>;
         let area = this.props.data.area ? <div>{this.props.data.area__name}</div> : <div>無</div>;

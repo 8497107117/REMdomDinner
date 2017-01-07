@@ -33,7 +33,14 @@ class Stores extends React.Component {
 
     renderStoresData() {
         return this.state.storesData.map((storeData) => {
-            return (<Store key={storeData.id} auth={this.props.auth} data={storeData} selectStore={this.props.selectStore.bind(this)} />);
+            let storeProps = {
+                key: storeData.id,
+                auth: this.props.auth,
+                data: storeData,
+                selectStore: this.props.selectStore.bind(this),
+                afterDelete: this.updateStoresData.bind(this)
+            };
+            return (<Store {...storeProps} />);
         });
     }
 

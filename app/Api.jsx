@@ -48,15 +48,14 @@ function login(data) {
         });
 }
 
-function refreshToken(data) {
-    data = { token: data };
+function refreshToken(token) {
     return $.ajax({
         url: `${HOST}/api-token-refresh/`,
         method: 'POST',
-        data
+        data: { token }
     })
         .done((data) => {
-            return data.token;
+            return data;
         });
 }
 

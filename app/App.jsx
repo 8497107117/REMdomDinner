@@ -51,9 +51,9 @@ class App extends React.Component {
 
     refreshToken() {
         Api.refreshToken(this.state.auth.token)
-            .done((token) => {
+            .done((data) => {
                 let auth = this.state.auth;
-                auth.token = token;
+                auth.token = data.token;
                 this.setState({ auth });
                 localStorage.setItem('auth', JSON.stringify(this.state.auth));
             });

@@ -3,9 +3,10 @@
 @import "./nav.scss";
 
 body{
-    h1{
-        color: red;
-    }
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 
     nav{
         @include nav();

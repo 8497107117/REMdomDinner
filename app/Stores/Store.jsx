@@ -1,15 +1,31 @@
 import React from 'react';
 import Api from '../Api';
+import UpdateStoreForm from './UpdateStoreForm';
 
 class Store extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isOpen: false };
+        this.state = { isOpen: false, isUpdate: false };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.auth.isLogin) {
+            this.setState({ isOpen: false, isUpdate: false });
+        }
+    }
+
+    afterUpdate() {
+        this.props.afterUpdate();
+        this.setState({ isUpdate: false });
+    }
+
+    closeStoreInfo() {
+        this.setState({ isOpen: false });
     }
 
     deleteStore() {
         Api.deleteStore(this.props.data.id, this.props.auth.token)
-            .done((data)=>{
+            .done((data) => {
                 this.props.afterDelete();
             });
     }
@@ -20,8 +36,12 @@ class Store extends React.Component {
     }
 
     showStoreInfo() {
-        let isOpen = !this.state.isOpen;
-        this.setState({ isOpen });
+        this.setState({ isOpen: true });
+    }
+
+    showUpdateForm() {
+        let isUpdate = !this.state.isUpdate;
+        this.setState({ isUpdate });
     }
 
     renderModifyButton() {
@@ -29,7 +49,7 @@ class Store extends React.Component {
         if (this.props.auth.isLogin && this.props.auth.username == this.props.data.provide_by) {
             modifyButton = (
                 <div>
-                    <button>修改</button>
+                    <button onClick={this.showUpdateForm.bind(this)}>修改</button>
                     <button onClick={this.deleteStore.bind(this)}>刪除</button>
                 </div>
             );
@@ -37,15 +57,14 @@ class Store extends React.Component {
         return modifyButton;
     }
 
-    renderStoreInfo() {
-        let storeInfo;
+    renderStoreInfoOrForm() {
+        let storeInfoOrForm;
         let type = this.props.data.type ? <div>{this.props.data.type__name}</div> : <div>無</div>;
         let area = this.props.data.area ? <div>{this.props.data.area__name}</div> : <div>無</div>;
-        let modifyButton = this.renderModifyButton();
-        if (this.state.isOpen) {
-            storeInfo = (
+        if (this.state.isOpen && !this.state.isUpdate) {
+            storeInfoOrForm = (
                 <div>
-                    <button onClick={this.showStoreInfo.bind(this)}>關閉</button>
+                    <button onClick={this.closeStoreInfo.bind(this)}>關閉</button>
                     <div>{this.props.data.name}</div>
                     <div>{this.props.data.address}</div>
                     <div>{this.props.data.phone}</div>
@@ -53,15 +72,31 @@ class Store extends React.Component {
                     {type}
                     {area}
                     <div>{this.props.data.provide_by}</div>
-                    {modifyButton}
+                    {this.renderModifyButton()}
                 </div>
             );
         }
-        return storeInfo;
+        else if (this.state.isOpen && this.state.isUpdate && this.props.auth.isLogin) {
+            storeInfoOrForm = (
+                <div>
+                    <button onClick={this.showUpdateForm.bind(this)}>關閉</button>
+                    <UpdateStoreForm auth={this.props.auth} data={this.props.data} afterUpdate={this.afterUpdate.bind(this)} />
+                </div>
+            );
+        }
+        return storeInfoOrForm;
+    }
+
+    renderUpdateForm() {
+        let updateForm;
+        if (this.state.isUpdate) {
+            updateForm = <div>FFFF</div>;
+        }
+
+        return updateForm;
     }
 
     render() {
-        let storeInfo = this.renderStoreInfo();
         return (
             <div className="store">
                 <div onClick={this.showStoreInfo.bind(this)}>
@@ -72,7 +107,7 @@ class Store extends React.Component {
                     <button onClick={this.selectStore.bind(this)}>想吃</button>
                     <button>加入最愛</button>
                 </div>
-                {storeInfo}
+                {this.renderStoreInfoOrForm()}
             </div>
         );
     }

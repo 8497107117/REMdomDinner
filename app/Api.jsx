@@ -28,7 +28,7 @@ function addStore(data, token) {
         });
 }
 
-function deleteStore(id, token){
+function deleteStore(id, token) {
     return $.ajax({
         url: `${HOST}/stores/${id}/delete/`,
         method: 'DELETE',
@@ -117,6 +117,20 @@ function register(data) {
         });
 }
 
+function updateStore(data, id, token) {
+    return $.ajax({
+        url: `${HOST}/stores/${id}/update/`,
+        method: 'PATCH',
+        data,
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
 export default {
     addStore,
     deleteStore,
@@ -126,5 +140,6 @@ export default {
     getStoresType,
     login,
     refreshToken,
-    register
+    register,
+    updateStore
 };

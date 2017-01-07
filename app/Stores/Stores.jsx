@@ -38,6 +38,7 @@ class Stores extends React.Component {
                 auth: this.props.auth,
                 data: storeData,
                 selectStore: this.props.selectStore.bind(this),
+                afterUpdate: this.updateStoresData.bind(this),
                 afterDelete: this.updateStoresData.bind(this)
             };
             return (<Store {...storeProps} />);

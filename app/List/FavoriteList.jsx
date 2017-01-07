@@ -39,6 +39,7 @@ class FavoriteList extends React.Component {
             <ul>
                 <div onClick={this.changeListOpenState.bind(this)}>{this.props.listName}</div>
                 <button onClick={this.selectFavorite.bind(this)}></button>
+                <button>x</button>
                 {favoriteList}
             </ul>
         );

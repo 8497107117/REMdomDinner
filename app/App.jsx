@@ -40,7 +40,7 @@ class App extends React.Component {
             }
         });
         localStorage.setItem('auth', JSON.stringify(this.state.auth));
-        this.interval = setInterval(() => this.refreshToken(), 1000);
+        this.interval = setInterval(() => this.refreshToken(), 300000);
     }
 
     logout() {

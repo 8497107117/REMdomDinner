@@ -6,17 +6,18 @@ import ListItem from './ListItem';
 class List extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { randomStore: {}, favoriteList: {} };
+        this.state = { randomStore: {}, favoriteList: [] };
     }
 
     componentDidMount() {
         if (this.props.auth.isLogin) {
+            console.log(this.props.auth.token);
             Api.getFavoriteLists(this.props.auth.token)
-                .done((data)=>{
-                    console.log(data);
+                .done((favoriteList) => {
+                    console.log(favoriteList);
+                    this.setState({ favoriteList });
                 });
         }
-        //this.setState({ favoriteList });
     }
 
     addFavoriteList(event) {
@@ -39,8 +40,8 @@ class List extends React.Component {
         if (Object.keys(this.state.favoriteList).length === 0) {
             return;
         }
-        return this.state.favoriteList.map((listData) => {
-            return (<FavoriteList key={listData.id} listName={listData.listName} storesData={listData.storesData} selectFavorite={this.props.selectFavorite.bind(this)} />);
+        return this.state.favoriteList.map((listData, index) => {
+            return (<FavoriteList key={index} listName={listData.listname} storesData={listData.storesData} selectFavorite={this.props.selectFavorite.bind(this)} />);
         });
     }
 

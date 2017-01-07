@@ -15,7 +15,6 @@ function addFavoriteList(data, token) {
 }
 
 function getFavoriteLists(token) {
-    console.log(token);
     return $.ajax({
         url: `${HOST}/favlist/get/`,
         method: 'GET',

@@ -9,9 +9,48 @@ class Register extends React.Component {
                 username: '',
                 password: '',
                 email: ''
-            },
-            isRequest: false
+            }
         };
+    }
+
+    componentDidMount() {
+        $('.ui.basic.register.form.modal')
+            .modal({
+                allowMultiple: false,
+                onApprove: () => {
+                    Api.register(this.state.data)
+                        .done((data) => {
+                            this.clearInput();
+                        })
+                        .fail(() => {
+                            $('.ui.small.basic.register.warning.modal').modal('show');
+                        });
+                },
+                onDeny: () => {
+                    this.clearInput();
+                },
+            });
+        $('.ui.small.basic.register.warning.modal')
+            .modal({
+                allowMultiple: false,
+                closable: false,
+                onApprove: function () {
+                    $('.ui.basic.register.form.modal').modal('show');
+                }
+            });
+    }
+
+    clearInput() {
+        this.setState({
+            data: {
+                username: '',
+                password: '',
+                email: ''
+            }
+        });
+        $(".ui.basic.register.form.modal input[type=text]").val('');
+        $(".ui.basic.register.form.modal input[type=password]").val('');
+        $(".ui.basic.register.form.modal input[type=email]").val('');
     }
 
     handleChange(event) {
@@ -25,44 +64,44 @@ class Register extends React.Component {
         });
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        Api.register(this.state.data)
-            .done((data) => {
-                this.props.register();
-            })
-            .fail((data) => {
-                this.setState({
-                    data: {
-                        username: '',
-                        password: '',
-                        email: ''
-                    },
-                    isRequest: true
-                });
-            });
-        $("input[type=text]").val('');
-        $("input[type=password]").val('');
-        $("input[type=email]").val('');
-    }
-
     render() {
-        let errMsg;
-        if (this.state.isRequest) {
-            errMsg = (<div>註冊失敗</div>);
-        }
         return (
             <div>
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <label htmlFor="username">使用者帳號</label>
-                    <input type="text" name="username" placeholder="請輸入使用者帳號" ref="username" onChange={this.handleChange.bind(this)} />
-                    <label htmlFor="password">密碼</label>
-                    <input type="password" name="password" placeholder="請輸入密碼" ref="password" onChange={this.handleChange.bind(this)} />
-                    <label htmlFor="email">信箱</label>
-                    <input type="email" name="email" placeholder="請輸入信箱" ref="email" onChange={this.handleChange.bind(this)} />
-                    <button onClick={this.handleSubmit.bind(this)}>註冊</button>
-                </form>
-                {errMsg}
+                <div className="ui basic register form modal">
+                    <div className="header">註冊</div>
+                    <div className="ui input">
+                        <label htmlFor="username">使用者帳號</label>
+                        <input type="text" name="username" placeholder="請輸入使用者帳號" ref="username" onChange={this.handleChange.bind(this)} />
+                    </div>
+                    <div className="ui input">
+                        <label htmlFor="password">密碼</label>
+                        <input type="password" name="password" placeholder="請輸入密碼" ref="password" onChange={this.handleChange.bind(this)} />
+                    </div>
+                    <div className="ui input">
+                        <label htmlFor="email">信箱</label>
+                        <input type="email" name="email" placeholder="請輸入信箱" ref="email" onChange={this.handleChange.bind(this)} />
+                    </div>
+                    <div className="actions">
+                        <div className="two fluid ui inverted buttons">
+                            <div className="ui ok green basic inverted button">
+                                <i className="checkmark icon"></i>註冊
+					        </div>
+                            <div className="ui cancel red basic inverted button">
+                                <i className="undo icon"></i>取消
+					        </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="ui small basic register warning modal">
+                    <div className="header">註冊失敗</div>
+                    <div className="actions">
+                        <div className="fluid ui inverted buttons">
+                            <div className="ui ok green basic inverted button">
+                                <i className="checkmark icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

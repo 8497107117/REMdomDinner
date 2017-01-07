@@ -6,32 +6,56 @@ import ListItem from './ListItem';
 class List extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { randomStore: {} };
+    }
+
+    componentDidMount() {
+        $('.tab-thinking')
+            .on('click', () => {
+                $.tab('change tab', 'thinking');
+            });
+        $('.tab-favorite')
+            .on('click', () => {
+                $.tab('change tab', 'favorite');
+            });
+        $('.tab-thinking').trigger('click');
     }
 
     addFavoriteList(event) {
         event.preventDefault();
-        console.log('add favorite');
-        console.log('listName : ', this.refs.listname.value);
-    }
-
-    randomDecide() {
-        let randomStore = this.props.storesData[Math.floor(Math.random() * this.props.storesData.length)];
-        this.setState({ randomStore });
-    }
-
-    resetRandom() {
-        this.setState({ randomStore: {} });
-        this.props.resetSelected();
+        Api.addFavoriteList(this.refs.listname.value, this.props.auth.token)
+            .done((data)=>{
+                console.log(data);
+            });
     }
 
     renderFavoriteList() {
-        if (Object.keys(this.props.favoriteList).length === 0) {
+        if (this.props.favoriteListlength === 0) {
             return;
         }
         return this.props.favoriteList.map((listData, index) => {
             return (<FavoriteList key={index} listName={listData.listname} storesData={listData.storesData} selectFavorite={this.props.selectFavorite.bind(this)} />);
         });
+    }
+
+    renderListButton() {
+        if (this.props.storesData.length != 0) {
+            let addFavoriteForm;
+            if (this.props.auth.isLogin) {
+                addFavoriteForm = (
+                    <form>
+                        <input type="text" name="listname" placeholder="最愛清單名稱" ref="listname" />
+                        <button onClick={this.addFavoriteList.bind(this)}>加入最愛</button>
+                    </form>
+                );
+            }
+            return (
+                <div>
+                    <button onClick={this.props.randomDecide.bind(this)}>隨機</button>
+                    <button onClick={this.props.resetRandom.bind(this)}>清除</button>
+                    {addFavoriteForm}
+                </div>
+            );
+        }
     }
 
     renderListItem() {
@@ -43,45 +67,30 @@ class List extends React.Component {
         });
     }
 
-    render() {
-        let favoriteList;
-        let randomStore;
-        let listButton;
-        if (this.props.auth.isLogin) {
-            favoriteList = this.renderFavoriteList();
-        }
-        if (Object.keys(this.state.randomStore).length === 0 && this.state.randomStore.constructor === Object) {
-            randomStore = <div>請選擇</div>;
+    renderRandomStore() {
+        if (Object.keys(this.props.randomStore).length === 0 && this.props.randomStore.constructor === Object) {
+            return <div>請選擇</div>;
         }
         else {
-            randomStore = <div>去吃{this.state.randomStore.name}吧！</div>;
+            return <div>去吃{this.props.randomStore.name}吧！</div>;
         }
-        if (this.props.storesData.length != 0) {
-            let addFavoriteForm;
-            if (this.props.auth.isLogin) {
-                addFavoriteForm = (
-                    <form>
-                        <input type="text" name="listname" placeholder="最愛清單名稱" ref="listname" />
-                        <button onClick={this.addFavoriteList.bind(this)}>加入最愛</button>
-                    </form>
-                );
-            }
-            listButton = (
-                <div>
-                    <button onClick={this.randomDecide.bind(this)}>隨機</button>
-                    <button onClick={this.resetRandom.bind(this)}>清除</button>
-                    {addFavoriteForm}
-                </div>
-            );
-        }
+    }
+
+    render() {
         return (
             <div className="list">
-                {favoriteList}
-                {randomStore}
-                {listButton}
-                < ul >
-                    {this.renderListItem()}
-                </ul >
+                <button className="tab-thinking" data-tab="thinking">思考中</button>
+                <button className="tab-favorite" data-tab="favorite">最愛</button>
+                <div className="ui tab" data-tab="favorite">
+                    {this.renderFavoriteList()}
+                </div>
+                <div className="ui tab" data-tab="thinking">
+                    {this.renderRandomStore()}
+                    {this.renderListButton()}
+                    < ul >
+                        {this.renderListItem()}
+                    </ul >
+                </div>
             </div>
         );
     }

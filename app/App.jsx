@@ -7,7 +7,12 @@ import Stores from './Stores/Stores';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { auth: { isLogin: false }, selectedStore: [], favoriteList: [] };
+        this.state = {
+            auth: { isLogin: false },
+            favoriteList: [],
+            randomStore: {},
+            selectedStore: []
+        };
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
     }
@@ -58,6 +63,11 @@ class App extends React.Component {
         clearInterval(this.interval);
     }
 
+    randomDecide() {
+        let randomStore = this.state.selectedStore[Math.floor(Math.random() * this.state.selectedStore.length)];
+        this.setState({ randomStore });
+    }
+
     refreshToken() {
         Api.refreshToken(this.state.auth.token)
             .done((data) => {
@@ -68,7 +78,8 @@ class App extends React.Component {
             });
     }
 
-    restSelected() {
+    resetRandom() {
+        this.setState({ randomStore: {} });
         this.setState({ selectedStore: [] });
     }
 
@@ -116,11 +127,14 @@ class App extends React.Component {
     render() {
         let listProps = {
             auth: this.state.auth,
+            afterUpdateFavoriteList: this.getFavoriteLists.bind(this),
             favoriteList: this.state.favoriteList,
+            randomDecide: this.randomDecide.bind(this),
+            randomStore: this.state.randomStore,
+            resetRandom: this.resetRandom.bind(this),
             selectFavorite: this.selectFavorite.bind(this),
-            unselectStore: this.unselectStore.bind(this),
-            resetSelected: this.restSelected.bind(this),
-            storesData: this.state.selectedStore
+            storesData: this.state.selectedStore,
+            unselectStore: this.unselectStore.bind(this)
         };
         let storesProps = {
             auth: this.state.auth,

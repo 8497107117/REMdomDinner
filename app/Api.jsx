@@ -1,8 +1,23 @@
 const HOST = 'https://remdomdinner.nctu.me';
 
-function addFavoriteList(data, token) {
+function addFavoriteList(listname, token) {
+    let data = { listname };
     return $.ajax({
-        url: `${HOST}/favlist/add/`,
+        url: `${HOST}/favlistname/add/`,
+        method: 'POST',
+        data,
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
+function addStoreToFavoriteList(data, token) {
+    return $.ajax({
+        url: `${HOST}/favlistname/add/`,
         method: 'POST',
         data,
         beforeSend: (xhr) => {
@@ -132,6 +147,7 @@ function updateStore(data, id, token) {
 }
 
 export default {
+    addFavoriteList,
     addStore,
     deleteStore,
     getAreaType,

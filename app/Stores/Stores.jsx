@@ -56,11 +56,13 @@ class Stores extends React.Component {
         }
         return (
             <div className="stores">
-                <button>上</button>
+                <div className="stores-up">上</div>
                 {addButton}
                 {addForm}
-                {this.renderStoresData()}
-                <button>下</button>
+                <div className="stores-inner">
+                    {this.renderStoresData()}
+                </div>
+                <div className="stores-down">下</div>
             </div>
         );
     }

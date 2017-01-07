@@ -103,11 +103,13 @@ class Store extends React.Component {
                     <div>{this.props.data.name}</div>
                     <img src={this.props.data.url} alt={this.props.data.name} />
                 </div>
-                <div>
-                    <button onClick={this.selectStore.bind(this)}>想吃</button>
-                    <button>加入最愛</button>
+                <div className="mask">
+                    <div>
+                        <button onClick={this.selectStore.bind(this)}>想吃</button>
+                        <button>加入最愛</button>
+                    </div>
+                    {this.renderStoreInfoOrForm()}
                 </div>
-                {this.renderStoreInfoOrForm()}
             </div>
         );
     }

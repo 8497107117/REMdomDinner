@@ -1,6 +1,6 @@
 const HOST = 'https://remdomdinner.nctu.me';
 
-function addFavoriteList(data, token){
+function addFavoriteList(data, token) {
     return $.ajax({
         url: `${HOST}/favlist/add/`,
         method: 'POST',
@@ -15,7 +15,6 @@ function addFavoriteList(data, token){
 }
 
 function getFavoriteLists(token) {
-    console.log(token);
     return $.ajax({
         url: `${HOST}/favlist/get/`,
         method: 'GET',
@@ -49,6 +48,17 @@ function login(data) {
         });
 }
 
+function refreshToken(token) {
+    return $.ajax({
+        url: `${HOST}/api-token-refresh/`,
+        method: 'POST',
+        data: { token }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
 function register(data) {
     return $.ajax({
         url: `${HOST}/users/create-account/`,
@@ -60,4 +70,4 @@ function register(data) {
         });
 }
 
-export default { getFavoriteLists, getStoreData, login, register };
+export default { getFavoriteLists, getStoreData, login, refreshToken, register };

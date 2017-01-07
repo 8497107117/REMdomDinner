@@ -25,7 +25,9 @@ class Stores extends React.Component {
     render() {
         return (
             <div className="stores">
+                <button>上</button>
                 {this.renderStoresData()}
+                <button>下</button>
             </div>
         );
     }

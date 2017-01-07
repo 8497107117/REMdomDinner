@@ -56,13 +56,13 @@ class Store extends React.Component {
         let storeInfo = this.renderStoreInfo();
         return (
             <div className="store">
-                <div>
+                <div onClick={this.showStoreInfo.bind(this)}>
                     <div>{this.props.data.name}</div>
                     <img src={this.props.data.url} alt={this.props.data.name} />
                 </div>
                 <div>
                     <button onClick={this.selectStore.bind(this)}>想吃</button>
-                    <button onClick={this.showStoreInfo.bind(this)}>商家資訊</button>
+                    <button>加入最愛</button>
                 </div>
                 {storeInfo}
             </div>

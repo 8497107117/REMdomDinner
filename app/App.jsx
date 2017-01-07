@@ -1,4 +1,5 @@
 import React from 'react';
+import Api from './Api';
 import Navbar from './Navbar/Navbar';
 import List from './List/List';
 import Stores from './Stores/Stores';
@@ -20,6 +21,16 @@ class App extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (this.state.auth.isLogin) {
+            this.interval = setInterval(() => this.refreshToken(), 300000);
+        }
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     login(data, token) {
         this.setState({
             auth: {
@@ -29,11 +40,23 @@ class App extends React.Component {
             }
         });
         localStorage.setItem('auth', JSON.stringify(this.state.auth));
+        this.interval = setInterval(() => this.refreshToken(), 300000);
     }
 
     logout() {
         this.setState({ auth: { isLogin: false } });
         localStorage.clear();
+        clearInterval(this.interval);
+    }
+
+    refreshToken() {
+        Api.refreshToken(this.state.auth.token)
+            .done((data) => {
+                let auth = this.state.auth;
+                auth.token = data.token;
+                this.setState({ auth });
+                localStorage.setItem('auth', JSON.stringify(this.state.auth));
+            });
     }
 
     restSelected() {

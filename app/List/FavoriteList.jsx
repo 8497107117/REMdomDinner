@@ -26,7 +26,7 @@ class FavoriteList extends React.Component {
             return (<li>無</li>);
         }
         return this.props.storesData.map((storeData) => {
-            return (<ListItem key={storeData.id} data={storeData} unselectStore={this.removeStoreFromFavorite.bind(this)} />);
+            return (<ListItem key={storeData.listId} data={storeData} unselectStore={this.removeStoreFromFavorite.bind(this)} />);
         });
     }
 

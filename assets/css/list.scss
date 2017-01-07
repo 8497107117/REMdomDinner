@@ -2,7 +2,7 @@
     display: inline-block;
     width: 50%;
     height: 100%;
-    overflow: scroll;
+    overflow: hidden;
     vertical-align: top;
     background: rgba(206, 206, 255, 0.5);
 
@@ -40,6 +40,30 @@
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-color: transparent;
+                
+                @keyframes x-btn{
+                    0%  {background-color: rgba(255, 255, 255, 0);}
+                    50% {background-color: rgba(255, 255, 255, 0.2);}
+                    100%  {background-color: rgba(255, 255, 255, 0);}
+                }
+
+                @keyframes x-shake{
+                    0%  {transform: rotate(0deg);}
+                    33% {transform: rotate(10deg)}
+                    66% {transform: rotate(-10deg)}
+                    100%  {transform: rotate(0deg);}
+                }
+
+                &:hover{
+                    animation-name: x-btn;
+                    animation-duration: 1s;
+                    animation-iteration-count: infinite;                    
+                    
+                    animation-name: x-shake;
+                    animation-delay: 0.4s;
+                    animation-duration: 0.2s;
+                    animation-iteration-count: 3;                    
+                }
             }
 
             &:hover{

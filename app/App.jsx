@@ -49,8 +49,7 @@ class App extends React.Component {
     getStoresData() {
         Api.getStoresData()
             .done((data) => {
-                if (data)
-                    this.setState({ storesData: data });
+                this.setState({ storesData: data });
             });
         /* update selected */
     }
@@ -92,6 +91,13 @@ class App extends React.Component {
     resetRandom() {
         this.setState({ randomStore: {} });
         this.setState({ selectedStore: [] });
+    }
+
+    search(keyword) {
+        Api.getStoresData(keyword)
+            .done((data) => {
+                this.setState({ storesData: data });
+            });
     }
 
     selectFavorite(storesData) {
@@ -153,8 +159,9 @@ class App extends React.Component {
             favoriteList: this.state.favoriteList,
             updateFavoriteList: this.getFavoriteLists.bind(this),
             updateStoreData: this.getStoresData.bind(this),
+            search: this.search.bind(this),
             selectStore: this.selectStore.bind(this),
-            storesData : this.state.storesData
+            storesData: this.state.storesData
         }
         return (
             <div>

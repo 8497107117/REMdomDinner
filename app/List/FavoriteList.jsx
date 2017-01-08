@@ -48,9 +48,16 @@ class FavoriteList extends React.Component {
         }
         return (
             <ul>
-                <div onClick={this.changeListOpenState.bind(this)}>{this.props.listName}</div>
-                <button onClick={this.selectFavorite.bind(this)}>+</button>
-                <button onClick={this.deleteFavoriteList.bind(this)}>x</button>
+                <div >{this.props.listName}</div>
+                <button className="favo-exp ui inverted violet icon button" onClick={this.changeListOpenState.bind(this)}>
+                    <i className="caret down icon"></i>
+                </button>
+                <button className="favo-add ui inverted blue icon button" onClick={this.selectFavorite.bind(this)}>
+                    <i className="plus icon"></i>
+                </button>
+                <button className="favo-del ui inverted red icon button" onClick={this.deleteFavoriteList.bind(this)}>
+                    <i className="remove circle icon"></i>
+                </button>
                 {favoriteList}
             </ul>
         );

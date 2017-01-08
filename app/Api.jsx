@@ -17,13 +17,13 @@ function addFavoriteList(listname, token) {
 
 function addStoreToFavoriteList(listname_id, sid, token) {
     let data = { listname_id, sid };
-    console.log(data, token);
     return $.ajax({
         url: `${HOST}/favlist/add/`,
         method: 'POST',
-        data,
+        data: JSON.stringify(data),
         beforeSend: (xhr) => {
             xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+            xhr.setRequestHeader('Content-Type', 'application/json');
         }
     })
         .done((data) => {

@@ -11,7 +11,8 @@ class UpdateStoreForm extends React.Component {
                 phone: '',
                 avg_price: '',
                 aid: '',
-                tid: ''
+                tid: '',
+                image_url: ''
             },
             type: {
                 area: [],
@@ -27,7 +28,8 @@ class UpdateStoreForm extends React.Component {
             phone: this.props.data.phone.toString(),
             avg_price: this.props.data.avg_price.toString(),
             aid: this.props.data.area.toString(),
-            tid: this.props.data.type.toString()
+            tid: this.props.data.type.toString(),
+            image_url: this.props.data.image_url || ''
         };
         this.setState({ data });
     }
@@ -52,14 +54,12 @@ class UpdateStoreForm extends React.Component {
                     Api.updateStore(this.state.data, this.props.data.id, this.props.auth.token)
                         .done((data) => {
                             this.props.updateStoreData();
-                            this.clearInput();
                         })
                         .fail((data) => {
                             $(`.update-store-${this.props.data.id}.warning.modal`).modal('show');
                         });
                 },
                 onDeny: () => {
-                    this.clearInput();
                 }
             });
         $(`.update-store-${this.props.data.id}.warning.modal`)
@@ -72,20 +72,6 @@ class UpdateStoreForm extends React.Component {
             });
     }
 
-    clearInput() {
-        this.setState({
-            data: {
-                name: '',
-                address: '',
-                phone: '',
-                avg_price: '',
-                aid: '',
-                tid: ''
-            }
-        });
-        $(`.update-store-${this.props.data.id}.form.modal input`).val('');
-    }
-
     handleChange(event) {
         event.preventDefault();
         this.setState({
@@ -95,7 +81,8 @@ class UpdateStoreForm extends React.Component {
                 phone: this.refs.phone.value,
                 avg_price: this.refs.price.value,
                 aid: this.refs.area.value,
-                tid: this.refs.storeType.value
+                tid: this.refs.storeType.value,
+                image_url: this.refs.url.value
             }
         });
     }
@@ -134,6 +121,10 @@ class UpdateStoreForm extends React.Component {
                         <select name="storeType" defaultValue={this.props.data.tid} value={this.state.data.tid} ref="storeType" onChange={this.handleChange.bind(this)} required>
                             {this.state.type.store.map((type) => <option key={type.id} value={type.id}>{type.name}</option>)}
                         </select>
+                    </div>
+                    <div className="field">
+                        <label htmlFor="url">縮圖網址</label>
+                        <input type="text" name="url" placeholder="縮圖網址" ref="url" onChange={this.handleChange.bind(this)} required />
                     </div>
                     <div className="actions">
                         <div className="two fluid ui inverted buttons">

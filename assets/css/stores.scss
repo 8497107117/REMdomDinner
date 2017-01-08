@@ -51,6 +51,15 @@
         .store{
             display: inline-block;
             overflow: hidden;
+            @media screen and (min-width: 1440px){
+                width: 24%;
+            }
+            @media screen and (min-width: 1024px) and (max-width: 1439px){
+                width: 33%;
+            }
+            @media screen and (max-width: 1023px){
+                width: 49%;
+            }
             width: 33%;
             height: 33%;
             margin: 0;

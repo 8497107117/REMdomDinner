@@ -17,6 +17,7 @@ function addFavoriteList(listname, token) {
 
 function addStoreToFavoriteList(listname_id, sid, token) {
     let data = { listname_id, sid };
+    console.log(data, token);
     return $.ajax({
         url: `${HOST}/favlist/add/`,
         method: 'POST',

@@ -71,7 +71,7 @@ class List extends React.Component {
             return (
                 <div>
                     <div className="list-exec">
-                        <div className="ui vertical animated button random" onClick={this.props.randomDecide.bind(this)}>
+                        <div className="ui vertical animated green button random" onClick={this.props.randomDecide.bind(this)}>
                           <div className="hidden content">隨機</div>
                           <div className="visible content">
                             <i className="cube icon"></i>
@@ -80,7 +80,7 @@ class List extends React.Component {
                         <div className="ui vertical animated button clear" onClick={this.props.resetRandom.bind(this)}>
                           <div className="hidden content">清除</div>
                           <div className="visible content">
-                            <i className="cube icon"></i>
+                            <i className="trash icon"></i>
                           </div>
                         </div>
                     </div>

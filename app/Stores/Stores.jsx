@@ -56,6 +56,14 @@ class Stores extends React.Component {
                 </div> 
                 {this.renderAddButton()}
                 {this.renderAddForm()}
+
+                <div className="ui search">
+                    <div className="ui icon input">
+                        <input className="prompt" type="text" placeholder="Search..." />
+                        <i className="search icon"></i>
+                    </div>
+                    <div className="results"></div>
+                </div>
                 <div className="stores-inner">
                     {this.renderStoresData()}
                 </div>

@@ -23,9 +23,17 @@
         position: absolute;
         top: 5%;
         left: 0;
-        width: 100%;
+        width: 50%;
         height: 5%;
         display: inline-block;
+    }
+    
+    .ui.search{
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        width: 50%;
+        height: 5%;
     }
 
     .stores-down{

@@ -109,7 +109,7 @@ class Store extends React.Component {
         return (
             <div className="store">
                 <div className="store-desc">
-                    <img src={this.props.data.image_url} alt="" />
+                    <img className="default-img" src={this.props.data.image_url} alt="" />
                     <div className="store-name">{this.props.data.name}</div>
                     <div className="store-ani"></div>
                 </div>

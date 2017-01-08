@@ -125,7 +125,7 @@ class List extends React.Component {
             <div className="list">
                 <button className="tab-thinking ui teal button" data-tab="thinking">選擇列表</button>
                 <button className="tab-favorite ui blue button" data-tab="favorite">最愛</button>
-                <div className="ui tab favorite" data-tab="favorite">
+                <div className="ui tab" data-tab="favorite">
                     {this.renderFavoriteList()}
                 </div>
                 <div className="ui tab thinking" data-tab="thinking">

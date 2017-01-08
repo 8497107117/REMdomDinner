@@ -106,7 +106,7 @@ class UpdateStoreForm extends React.Component {
         return (
             <div>
                 <form className={formClass}>
-                    <div className="header">新增商家</div>
+                    <div className="header">更新商家</div>
                     <div className="field">
                         <label htmlFor="name">商家名稱</label>
                         <input type="text" name="name" defaultValue={this.props.data.name} placeholder="商家帳號" ref="name" onChange={this.handleChange.bind(this)} required />

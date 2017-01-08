@@ -43,6 +43,7 @@ class App extends React.Component {
         Api.getFavoriteLists(this.state.auth.token)
             .done((favoriteList) => {
                 this.setState({ favoriteList });
+                console.log(this.state.favoriteList);
             });
     }
 
@@ -149,6 +150,8 @@ class App extends React.Component {
         };
         let storesProps = {
             auth: this.state.auth,
+            favoriteList: this.state.favoriteList,
+            updateFavoriteList: this.getFavoriteLists.bind(this),
             updateStoreData: this.getStoresData.bind(this),
             selectStore: this.selectStore.bind(this),
             storesData : this.state.storesData

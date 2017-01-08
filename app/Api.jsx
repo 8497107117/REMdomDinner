@@ -15,9 +15,10 @@ function addFavoriteList(listname, token) {
         });
 }
 
-function addStoreToFavoriteList(data, token) {
+function addStoreToFavoriteList(listname_id, sid, token) {
+    let data = { listname_id, sid };
     return $.ajax({
-        url: `${HOST}/favlistname/add/`,
+        url: `${HOST}/favlist/add/`,
         method: 'POST',
         data,
         beforeSend: (xhr) => {
@@ -149,6 +150,7 @@ function updateStore(data, id, token) {
 export default {
     addFavoriteList,
     addStore,
+    addStoreToFavoriteList,
     deleteStore,
     getAreaType,
     getFavoriteLists,

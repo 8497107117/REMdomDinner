@@ -1,5 +1,6 @@
 import React from 'react';
 import Api from '../Api';
+import AddToFavoriteList from './AddToFavoriteList';
 import UpdateStoreForm from './UpdateStoreForm';
 
 class Store extends React.Component {
@@ -20,11 +21,6 @@ class Store extends React.Component {
             });
     }
 
-    updateStoreData() {
-        this.props.updateStoreData();
-        this.setState({ isUpdate: false });
-    }
-
     deleteStore() {
         Api.deleteStore(this.props.data.id, this.props.auth.token)
             .done((data) => {
@@ -37,12 +33,28 @@ class Store extends React.Component {
         this.props.selectStore(this.props.data);
     }
 
+    showAddToFavoriteList() {
+        $(`.fav-store-${this.props.data.id}.modal`).modal('show');
+    }
+
     showStoreInfo() {
         $(`.store-${this.props.data.id}.info.modal`).modal('show');
     }
 
     showUpdateForm() {
         $(`.update-store-${this.props.data.id}.form.modal`).modal('show');
+    }
+
+    renderAddToFavoriteList() {
+        if (this.props.auth.isLogin) {
+            let props = {
+                auth: this.props.auth,
+                data: this.props.data,
+                favoriteList: this.props.favoriteList,
+                updateFavoriteList: this.props.updateFavoriteList.bind(this)
+            }
+            return <AddToFavoriteList {...props} />;
+        }
     }
 
     renderModifyButton() {
@@ -87,7 +99,7 @@ class Store extends React.Component {
 
     renderUpdateForm() {
         if (this.props.auth.isLogin && this.props.auth.username == this.props.data.provide_by) {
-            return <UpdateStoreForm auth={this.props.auth} data={this.props.data} updateStoreData={this.updateStoreData.bind(this)} />;
+            return <UpdateStoreForm auth={this.props.auth} data={this.props.data} updateStoreData={this.props.updateStoreData.bind(this)} />;
         }
     }
 
@@ -101,12 +113,13 @@ class Store extends React.Component {
                 <div className="add" onClick={this.selectStore.bind(this)}>
                     <i className="checkmark box icon large"></i>
                 </div>
-                <div className="favorite">
+                <div className="favorite" onClick={this.showAddToFavoriteList.bind(this)}>
                     <i className="empty heart icon large"></i>
                 </div>
                 <div className="details" onClick={this.showStoreInfo.bind(this)}>
                     <i className="ellipsis horizontal icon large"></i>
                 </div>
+                {this.renderAddToFavoriteList()}
                 {this.renderStoreInfo()}
                 {this.renderUpdateForm()}
             </div>

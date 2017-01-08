@@ -11,7 +11,8 @@ class AddStoreForm extends React.Component {
                 phone: '',
                 avg_price: '',
                 aid: '',
-                tid: ''
+                tid: '',
+                image_url: ''
             },
             type: {
                 area: [],
@@ -68,7 +69,8 @@ class AddStoreForm extends React.Component {
                 phone: '',
                 avg_price: '',
                 aid: '',
-                tid: ''
+                tid: '',
+                image_url: ''
             }
         });
         $(".add-store.form.modal input").val('');
@@ -83,7 +85,8 @@ class AddStoreForm extends React.Component {
                 phone: this.refs.phone.value,
                 avg_price: this.refs.price.value,
                 aid: this.refs.area.value,
-                tid: this.refs.storeType.value
+                tid: this.refs.storeType.value,
+                image_url: this.refs.url.value
             }
         });
     }
@@ -120,6 +123,10 @@ class AddStoreForm extends React.Component {
                         <select name="storeType" ref="storeType" onChange={this.handleChange.bind(this)} required>
                             {this.state.type.store.map((type) => <option key={type.id} value={type.id}>{type.name}</option>)}
                         </select>
+                    </div>
+                    <div className="field">
+                        <label htmlFor="url">縮圖網址</label>
+                        <input type="text" name="url" placeholder="縮圖網址" ref="url" onChange={this.handleChange.bind(this)} required />
                     </div>
                     <div className="actions">
                         <div className="two fluid ui inverted buttons">

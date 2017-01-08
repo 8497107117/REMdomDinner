@@ -68,18 +68,18 @@ class List extends React.Component {
             let addFavoriteForm;
             if (this.props.auth.isLogin) {
                 addFavoriteForm = (
-                    <form id="add-list-form">
-                        <div className="field">
-                            <input type="text" name="listname" placeholder="最愛清單名稱" ref="listname" />
-                        </div>
-                        <button onClick={this.addFavoriteList.bind(this)}>加入最愛</button>
-                    </form>
+                    <div id="add-list-form" className="add-list-form">
+                        <input type="text" name="listname" placeholder="最愛清單名稱" ref="listname" />
+                        <button className="add-favorite" onClick={this.addFavoriteList.bind(this)}>加入最愛</button>
+                    </div>
                 );
             }
             return (
                 <div>
-                    <button onClick={this.props.randomDecide.bind(this)}>隨機</button>
-                    <button onClick={this.props.resetRandom.bind(this)}>清除</button>
+                    <div className="list-exec">
+                        <button className="random" onClick={this.props.randomDecide.bind(this)}>隨機</button>
+                        <button className="clear" onClick={this.props.resetRandom.bind(this)}>清除</button>
+                    </div>
                     {addFavoriteForm}
                 </div>
             );
@@ -113,15 +113,16 @@ class List extends React.Component {
     render() {
         return (
             <div className="list">
-                <button className="tab-thinking" data-tab="thinking">思考中</button>
+                <button className="tab-thinking" data-tab="thinking">選擇列表</button>
                 <button className="tab-favorite" data-tab="favorite">最愛</button>
-                <div className="ui tab" data-tab="favorite">
-                </div>
                 <div className="ui tab" data-tab="thinking">
                     {this.renderListButton()}
                     < ul >
                         {this.renderListItem()}
                     </ul >
+                </div>
+                <div className="ui tab" data-tab="favorite">
+                    {this.renderFavoriteList()}
                 </div>
                 {this.renderRandomStore()}
             </div>

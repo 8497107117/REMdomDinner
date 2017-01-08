@@ -76,20 +76,20 @@ class Store extends React.Component {
 
     renderStoreInfo() {
         let storeClass = `ui basic store-${this.props.data.id} info modal`;
-        let type = this.props.data.type ? <div>{this.props.data.type__name}</div> : <div>無</div>;
-        let area = this.props.data.area ? <div>{this.props.data.area__name}</div> : <div>無</div>;
-        let mapSrc = `http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.data.address}&z=16&output=embed&t=`;
+        let type = this.props.data.type ? <div>商家類別：{this.props.data.type__name}</div> : <div>商家類別：無</div>;
+        let area = this.props.data.area ? <div>區域：{this.props.data.area__name}</div> : <div>區域：無</div>;
+        let mapSrc = `https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.data.address}&z=16&output=embed&t=`;
         return (
             <div>
                 <div className={storeClass}>
                     <div className="header">{this.props.data.name}</div>
                     <div className="content">
-                        <div>{this.props.data.address}</div>
-                        <div>{this.props.data.phone}</div>
-                        <div>{this.props.data.avg_price}</div>
+                        <div>地址：{this.props.data.address}</div>
+                        <div>電話：{this.props.data.phone}</div>
+                        <div>平均價格：{this.props.data.avg_price}</div>
                         {type}
                         {area}
-                        <div>{this.props.data.provide_by}</div>
+                        <div>提供者：{this.props.data.provide_by}</div>
                         <iframe width="600" height="400" src={mapSrc} allowFullScreen></iframe>
                     </div>
                     {this.renderModifyButton()}
@@ -106,10 +106,11 @@ class Store extends React.Component {
     }
 
     render() {
+        let imgClass = this.props.data.image_url ? '' : 'default-img';
         return (
             <div className="store">
                 <div className="store-desc">
-                    <img className="default-img" src={this.props.data.image_url} alt="" />
+                    <img className={imgClass} src={this.props.data.image_url} alt="" />
                     <div className="store-name">{this.props.data.name}</div>
                     <div className="store-ani"></div>
                 </div>

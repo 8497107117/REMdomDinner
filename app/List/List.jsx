@@ -24,7 +24,19 @@ class List extends React.Component {
         event.preventDefault();
         Api.addFavoriteList(this.refs.listname.value, this.props.auth.token)
             .done((data) => {
-                console.log(data);
+                $('#add-list-form').val('');
+                let sid = [];
+                this.props.storesData.map((storeData) => {
+                    sid.push(storeData.id);
+                });
+                Api.addStoreToFavoriteList(data.id.toString(), sid, this.props.auth.token)
+                    .done(() => {
+                        this.props.updateFavoriteList();
+                    })
+                    .fail((data) => { console.log(data) });
+            })
+            .fail(() => {
+                $('#add-list-form').val('');
             });
     }
 
@@ -51,8 +63,10 @@ class List extends React.Component {
             let addFavoriteForm;
             if (this.props.auth.isLogin) {
                 addFavoriteForm = (
-                    <form>
-                        <input type="text" name="listname" placeholder="最愛清單名稱" ref="listname" />
+                    <form id="add-list-form">
+                        <div className="field">
+                            <input type="text" name="listname" placeholder="最愛清單名稱" ref="listname" />
+                        </div>
                         <button onClick={this.addFavoriteList.bind(this)}>加入最愛</button>
                     </form>
                 );

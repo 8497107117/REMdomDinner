@@ -18,6 +18,10 @@ class List extends React.Component {
                 $.tab('change tab', 'favorite');
             });
         $('.tab-thinking').trigger('click');
+
+        $('.ui.random-result.modal').modal({
+            allowMultiple: false
+        });
     }
 
     addFavoriteList(event) {
@@ -72,16 +76,16 @@ class List extends React.Component {
                 <div>
                     <div className="list-exec">
                         <div className="ui vertical animated green button random" onClick={this.props.randomDecide.bind(this)}>
-                          <div className="hidden content">隨機</div>
-                          <div className="visible content">
-                            <i className="cube icon"></i>
-                          </div>
+                            <div className="hidden content">隨機</div>
+                            <div className="visible content">
+                                <i className="cube icon"></i>
+                            </div>
                         </div>
                         <div className="ui vertical animated button clear" onClick={this.props.resetRandom.bind(this)}>
-                          <div className="hidden content">清除</div>
-                          <div className="visible content">
-                            <i className="trash icon"></i>
-                          </div>
+                            <div className="hidden content">清除</div>
+                            <div className="visible content">
+                                <i className="trash icon"></i>
+                            </div>
                         </div>
                     </div>
                     {addFavoriteForm}
@@ -100,12 +104,24 @@ class List extends React.Component {
     }
 
     renderRandomStore() {
+<<<<<<< HEAD
         if (Object.keys(this.props.randomStore).length === 0 && this.props.randomStore.constructor === Object) {
             return <div>請選擇</div>;
         }
         else {
             return <div>去吃{this.props.randomStore.name}吧！</div>;
         }
+=======
+        let mapSrc =`http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.randomStore.address}&z=16&output=embed&t=`;
+        return (
+            <div className="ui basic random-result modal">
+                <div className="header">去吃{this.props.randomStore.name}吧！</div>
+                <div className="content">
+                    <iframe width="800" height="600" src={mapSrc} allowFullScreen></iframe>
+                </div>
+            </div>
+        );
+>>>>>>> b80d4ea4e85ea02ec95ebfd7dabdee54c04918d5
     }
 
     render() {

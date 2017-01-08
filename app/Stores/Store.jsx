@@ -78,6 +78,7 @@ class Store extends React.Component {
         let storeClass = `ui basic store-${this.props.data.id} info modal`;
         let type = this.props.data.type ? <div>{this.props.data.type__name}</div> : <div>無</div>;
         let area = this.props.data.area ? <div>{this.props.data.area__name}</div> : <div>無</div>;
+        let mapSrc = `http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.data.address}&z=16&output=embed&t=`;
         return (
             <div>
                 <div className={storeClass}>
@@ -89,6 +90,7 @@ class Store extends React.Component {
                         {type}
                         {area}
                         <div>{this.props.data.provide_by}</div>
+                        <iframe width="600" height="400" src={mapSrc} allowFullScreen></iframe>
                     </div>
                     {this.renderModifyButton()}
                 </div>

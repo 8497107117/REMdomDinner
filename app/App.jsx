@@ -11,7 +11,8 @@ class App extends React.Component {
             auth: { isLogin: false },
             favoriteList: [],
             randomStore: {},
-            selectedStore: []
+            selectedStore: [],
+            storesData: []
         };
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
@@ -27,6 +28,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.getStoresData();
         if (this.state.auth.isLogin) {
             this.getFavoriteLists();
             this.interval = setInterval(() => this.refreshToken(), 300000);
@@ -41,6 +43,14 @@ class App extends React.Component {
         Api.getFavoriteLists(this.state.auth.token)
             .done((favoriteList) => {
                 this.setState({ favoriteList });
+            });
+    }
+
+    getStoresData() {
+        Api.getStoresData()
+            .done((data) => {
+                if (data)
+                    this.setState({ storesData: data });
             });
     }
 
@@ -127,7 +137,7 @@ class App extends React.Component {
     render() {
         let listProps = {
             auth: this.state.auth,
-            afterUpdateFavoriteList: this.getFavoriteLists.bind(this),
+            update: this.getFavoriteLists.bind(this),
             favoriteList: this.state.favoriteList,
             randomDecide: this.randomDecide.bind(this),
             randomStore: this.state.randomStore,
@@ -138,7 +148,9 @@ class App extends React.Component {
         };
         let storesProps = {
             auth: this.state.auth,
-            selectStore: this.selectStore.bind(this)
+            update: this.getStoresData.bind(this),
+            selectStore: this.selectStore.bind(this),
+            storesData : this.state.storesData
         }
         return (
             <div>

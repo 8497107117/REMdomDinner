@@ -6,33 +6,30 @@ import AddStoreForm from './AddStoreForm';
 class Stores extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { storesData: [], isAdd: false };
-    }
-
-    componentDidMount() {
-        this.getStoresData();
-    }
-
-    getStoresData() {
-        Api.getStoresData()
-            .done((data) => {
-                if (data)
-                    this.setState({ storesData: data });
-            });
     }
 
     showAddForm() {
-        let isAdd = !this.state.isAdd;
-        this.setState({ isAdd });
+        $('.ui.basic.add-store.form.modal').modal('show');
     }
 
     updateStoresData() {
-        this.getStoresData();
-        this.setState({ isAdd: false });
+        this.props.update();
+    }
+
+    renderAddButton() {
+        if (this.props.auth.isLogin) {
+            return <button onClick={this.showAddForm.bind(this)}>+</button>;
+        }
+    }
+
+    renderAddForm() {
+        if (this.props.auth.isLogin) {
+            return <AddStoreForm auth={this.props.auth} afterAdd={this.updateStoresData.bind(this)} />;
+        }
     }
 
     renderStoresData() {
-        return this.state.storesData.map((storeData) => {
+        return this.props.storesData.map((storeData) => {
             let storeProps = {
                 key: storeData.id,
                 auth: this.props.auth,
@@ -46,19 +43,11 @@ class Stores extends React.Component {
     }
 
     render() {
-        let addButton;
-        let addForm;
-        if (this.props.auth.isLogin) {
-            addButton = <button onClick={this.showAddForm.bind(this)}>+</button>;
-        }
-        if (this.props.auth.isLogin && this.state.isAdd) {
-            addForm = <AddStoreForm auth={this.props.auth} afterAdd={this.updateStoresData.bind(this)} />;
-        }
         return (
             <div className="stores">
                 <div className="stores-up">上</div>
-                {addButton}
-                {addForm}
+                {this.renderAddButton()}
+                {this.renderAddForm()}
                 <div className="stores-inner">
                     {this.renderStoresData()}
                 </div>

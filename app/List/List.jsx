@@ -104,7 +104,7 @@ class List extends React.Component {
     }
 
     renderRandomStore() {
-        let mapSrc = `http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.randomStore.address}&z=16&output=embed&t=`;
+        let mapSrc = `https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.randomStore.address}&z=16&output=embed&t=`;
         return (
             <div className="ui basic random-result modal">
                 <div className="header">去吃{this.props.randomStore.name}吧！</div>

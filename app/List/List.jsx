@@ -20,9 +20,7 @@ class List extends React.Component {
         $('.tab-thinking').trigger('click');
 
         $('.ui.random-result.modal').modal({
-            allowMultiple: false,
-            onApprove: () => {
-            }
+            allowMultiple: false
         });
     }
 
@@ -78,16 +76,16 @@ class List extends React.Component {
                 <div>
                     <div className="list-exec">
                         <div className="ui vertical animated green button random" onClick={this.props.randomDecide.bind(this)}>
-                          <div className="hidden content">隨機</div>
-                          <div className="visible content">
-                            <i className="cube icon"></i>
-                          </div>
+                            <div className="hidden content">隨機</div>
+                            <div className="visible content">
+                                <i className="cube icon"></i>
+                            </div>
                         </div>
                         <div className="ui vertical animated button clear" onClick={this.props.resetRandom.bind(this)}>
-                          <div className="hidden content">清除</div>
-                          <div className="visible content">
-                            <i className="trash icon"></i>
-                          </div>
+                            <div className="hidden content">清除</div>
+                            <div className="visible content">
+                                <i className="trash icon"></i>
+                            </div>
                         </div>
                     </div>
                     {addFavoriteForm}
@@ -106,15 +104,12 @@ class List extends React.Component {
     }
 
     renderRandomStore() {
+        let mapSrc =`http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.randomStore.address}&z=16&output=embed&t=`;
         return (
             <div className="ui basic random-result modal">
                 <div className="header">去吃{this.props.randomStore.name}吧！</div>
-                <div className="actions">
-                    <div className="two fluid ui inverted buttons">
-                        <div className="ui ok green basic inverted button">
-                            <i className="map icon"></i>Google Map
-					    </div>
-                    </div>
+                <div className="content">
+                    <iframe width="800" height="600" src={mapSrc} allowFullScreen></iframe>
                 </div>
             </div>
         );

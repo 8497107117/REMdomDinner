@@ -3,7 +3,7 @@
     position: relative;
     width: 50%;
     height: 100%;
-    overflow: hidden;
+    overflow: scroll;
     vertical-align: top;
     background: rgba(206, 206, 255, 0.5);
 
@@ -74,10 +74,32 @@
         }
     }
 
+    .favorite{
+
+        ul{
+            &:first-child{
+                margin-top: 20%;
+            }
+            margin: 0;
+            background: rgba(185, 236, 75, 0.9);
+        }
+
+        div{
+            display: inline-block;
+            width: 65%;
+            height: 40px;
+        }
+
+        button{
+            display: inline-block;
+            width: 10%;
+            height: 40px;
+        }
+    }
 
     ul{
         list-style: none;
-        margin-top: 10%;
+        margin-top: 20%;
 
         li{
             text-align: center;

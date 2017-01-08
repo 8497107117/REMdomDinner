@@ -76,6 +76,7 @@ class App extends React.Component {
     randomDecide() {
         let randomStore = this.state.selectedStore[Math.floor(Math.random() * this.state.selectedStore.length)];
         this.setState({ randomStore });
+        $('.random-result').modal('show');
     }
 
     refreshToken() {

@@ -30,8 +30,8 @@ class Navbar extends React.Component {
                         </a>
                     </div>
                     <div className="inner-menu">
-                        <div>吃晚餐囉 {this.props.auth.username}</div>
-                        <a onClick={this.props.logout.bind(this)}>登出</a>
+                        <div className="ui purple button">吃晚餐囉 {this.props.auth.username}</div>
+                        <div className="ui green button" onClick={this.props.logout.bind(this)}>登出</div>
                     </div>
                 </div>
             );

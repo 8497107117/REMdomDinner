@@ -1,0 +1,210 @@
+@mixin stores(){
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255, 153, 204, 0.5);   
+    padding: 0 20px;
+    position: relative;
+    
+    .stores-up{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 5%;
+        width: 100%;
+        display: inline-block;
+        margin: 0;
+    }
+
+    .add-store{
+        position: absolute;
+        top: 5%;
+        left: 0;
+        width: 50%;
+        height: 5%;
+        display: inline-block;
+    }
+    
+    .ui.search{
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        width: 50%;
+        height: 5%;
+    }
+
+    .stores-down{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 5%;
+        width: 100%;
+    }
+    
+    .stores-inner{
+        height: 80%;
+        width: 100%;
+        margin-top: 15%;
+        .store{
+            display: inline-block;
+            overflow: hidden;
+            width: 33%;
+            height: 33%;
+            margin: 0;
+            border-radius: 25%;
+            border-style: solid;
+            border-width: 0 0 0 0;
+            transition: all 0.3s linear;
+            
+            @keyframes store-border{
+                0% {border-width: 0 0 0 0;}
+                50% {border-width: 2px 0 2px 0;}
+                100% {border-width: 2px 2px 2px 2px;}
+            }
+
+            .store-desc{
+                height: 100%;
+                width: 100%;
+                
+                @keyframes target{
+                    0% {
+                        transform: translate(0, -100%) scale(2, 2);
+                        opacity: 0.5;
+                    }
+                    35% {
+                        transform: translate(0, -100%) scale(1, 1);
+                        opacity: 0.5;
+                    }
+
+                    40% {
+                        transform: translate(0, -100%) scale(1, 1);
+                        opacity: 0.1;
+                    }
+
+                    45% {
+                        transform: translate(0, -100%) scale(1, 1);
+                        opacity: 0.5;
+                    }
+                    50% {
+                        transform: translate(0, -100%) scale(1, 1);
+                        opacity: 0.1;
+                    }
+                    60% {
+                        transform: translate(0, -100%) scale(1, 1);
+                        opacity: 0.5;
+                    }
+                    65% {
+                        transform: translate(0, -100%) scale(1, 1);
+                        opacity: 0.1;
+                    }
+                    100% {
+                        transform: translate(-100%, -200%) scale(1, 1);
+                        opacity: 0.5;
+                    }
+
+                }
+
+                .store-ani{
+                    position: relative;
+                    top: 0;
+                    height: 100%;
+                    width: 100%;
+                    transform: translate(0, 0);
+                    background-image: url("../img/target.png");
+                    background-size: 70% 70%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-color: transparent;
+                    z-index: 10;
+                }
+
+                &:hover > .store-ani{
+                    animation-name: target;
+                    animation-duration: 0.7s;
+                    animation-timing-function: ease-in-out;
+                    animation-iteration-count: 1;
+                }
+                
+                .default-img{
+                    background-image: url("../img/food.jpg");
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                }
+
+                img{
+                    height: 80%;
+                    width: 100%;
+                }
+                
+                .store-name{
+                    height: 20%;
+                    width: 100%;
+                }
+            }
+
+
+            &:hover{
+                transform: scale(1.05, 1.05);
+                animation-name: store-border;
+                animation-duration: 0.5s;
+                animation-delay: 0.3s;
+                animation-timing-function: ease-in-out;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+            
+            &:hover > .add{
+                transform: translate(0, 0);
+                visibility: visible;
+            }
+            &:hover > .favorite{
+                transform: translate(0, 100%);
+                visibility: visible;
+            }
+            &:hover > .details{
+                transform: translate(0, 200%);
+                visibility: visible;
+            }
+
+            i{
+                line-height: 3;
+            }
+
+            .add{
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 33%;
+                transform: translate(0, -100%);
+                transition: all 0.2s linear;
+                background: rgba(26, 37, 255, 0.7);
+            }
+            .favorite{
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 33%;
+                transform: translate(100%, 100%);
+                transition: all 0.2s linear;
+                background: rgba(255, 255, 36, 0.7);
+            }
+            .details{
+                visibility: hidden;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 33%;
+                transform: translate(0, 300%);
+                transition: all 0.2s linear;
+                background: rgba(0, 184, 12, 0.7);
+            }
+
+        }
+    }
+}

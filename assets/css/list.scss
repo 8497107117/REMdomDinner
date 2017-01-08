@@ -1,0 +1,176 @@
+@mixin list(){
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    overflow: scroll;
+    vertical-align: top;
+    background: rgba(206, 206, 255, 0.5);
+
+    .tab-thinking{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 5%;
+        z-index: 1;
+    }
+
+    .tab-favorite{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 5%;
+        z-index: 1;
+    }
+    
+    .thinking{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        .list-exec{
+            position: absolute;
+            top: 5%;
+            left: 0;
+            width: 50%;
+            height: 5%;
+
+
+            .random{
+                width: 50%;
+                height: 100%;
+                margin: 0;
+            }
+
+            .clear{
+                width: 50%;
+                height: 100%;
+                margin: 0;
+            }
+
+        }
+        .add-list-form{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5%;
+
+            input{
+                width: 80%;
+                height: 100%;
+                display: inline-block;
+            }
+
+            button{
+                width: 20%;
+                height: 100%;
+                display: inline-block;
+            }
+        }
+    }
+
+    .favorite{
+
+        ul{
+            &:first-child{
+                margin-top: 20%;
+            }
+            margin: 0;
+            background: rgba(185, 236, 75, 0.9);
+        }
+
+        div{
+            display: inline-block;
+            width: 65%;
+            height: 40px;
+        }
+
+        button{
+            display: inline-block;
+            width: 10%;
+            height: 40px;
+        }
+    }
+
+    ul{
+        list-style: none;
+        margin-top: 20%;
+
+        li{
+            text-align: center;
+            width: 50%;
+            //padding: 10px 0;
+            height: 40px;
+            margin: 5px 0;
+            border: 1.5px solid white;
+            border-radius: 15px 50px;
+            transition: all 0.1s linear;
+            overflow: hidden;
+            background: rgba(185, 236, 75, 0.5);
+
+            div{
+                display: inline-block;
+            }
+
+            div:first-child{
+                margin-top: 10px;
+            }
+            
+            .shake-ani{
+                position: relative;
+                float: right;
+                width: 40px;
+                height: 40px;
+                background-color: transparent;
+                
+                .list-remove-icon{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 0 50px 15px 0;
+                    background-image: url("../img/x.png");
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    margin: 0;
+                    
+                    @keyframes x-btn{
+                        0%  {background-color: rgba(255, 255, 255, 0);}
+                        50% {background-color: rgba(255, 255, 255, 0.2);}
+                        100%  {background-color: rgba(255, 255, 255, 0);}
+                    }
+
+                    &:hover{
+                        animation-name: x-btn;
+                        animation-duration: 1s;
+                        animation-iteration-count: infinite;                    
+                    }
+
+                }
+                @keyframes x-shake{
+                    0%  {transform: rotate(0deg);}
+                    33% {transform: rotate(10deg)}
+                    66% {transform: rotate(-10deg)}
+                    100%  {transform: rotate(0deg);}
+                }
+
+                &:hover{
+                    
+                    animation-name: x-shake;
+                    animation-delay: 0.4s;
+                    animation-duration: 0.15s;
+                    animation-iteration-count: 3;                    
+                }
+            }
+
+
+            &:hover{
+                transform: translate(5%);
+            }
+        }
+    }
+}

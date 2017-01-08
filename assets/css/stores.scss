@@ -127,14 +127,17 @@
                     animation-timing-function: ease-in-out;
                     animation-iteration-count: 1;
                 }
-
-                img{
-                    height: 80%;
-                    width: 100%;
+                
+                .default-img{
                     background-image: url("../img/food.jpg");
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center center;
+                }
+
+                img{
+                    height: 80%;
+                    width: 100%;
                 }
                 
                 .store-name{

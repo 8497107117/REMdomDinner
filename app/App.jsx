@@ -146,7 +146,8 @@ class App extends React.Component {
             resetRandom: this.resetRandom.bind(this),
             selectFavorite: this.selectFavorite.bind(this),
             storesData: this.state.selectedStore,
-            unselectStore: this.unselectStore.bind(this)
+            unselectStore: this.unselectStore.bind(this),
+            updateFavoriteList: this.getFavoriteLists.bind(this)
         };
         let storesProps = {
             auth: this.state.auth,

@@ -44,9 +44,35 @@ function addStore(data, token) {
         });
 }
 
+function deleteFavoriteList(listnameId, token) {
+    return $.ajax({
+        url: `${HOST}/favlistname/${listnameId}/delete/`,
+        method: 'DELETE',
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
 function deleteStore(id, token) {
     return $.ajax({
         url: `${HOST}/stores/${id}/delete/`,
+        method: 'DELETE',
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        }
+    })
+        .done((data) => {
+            return data;
+        });
+}
+
+function deleteStoreFromFavoriteList(favlistId, token) {
+    return $.ajax({
+        url: `${HOST}/favlist/${favlistId}/delete/`,
         method: 'DELETE',
         beforeSend: (xhr) => {
             xhr.setRequestHeader('Authorization', `Bearer ${token}`);
@@ -151,7 +177,9 @@ export default {
     addFavoriteList,
     addStore,
     addStoreToFavoriteList,
+    deleteFavoriteList,
     deleteStore,
+    deleteStoreFromFavoriteList,
     getAreaType,
     getFavoriteLists,
     getStoresData,

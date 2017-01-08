@@ -23,7 +23,7 @@ class List extends React.Component {
     addFavoriteList(event) {
         event.preventDefault();
         Api.addFavoriteList(this.refs.listname.value, this.props.auth.token)
-            .done((data)=>{
+            .done((data) => {
                 console.log(data);
             });
     }
@@ -32,8 +32,17 @@ class List extends React.Component {
         if (this.props.favoriteListlength === 0) {
             return;
         }
-        return this.props.favoriteList.map((listData, index) => {
-            return (<FavoriteList key={index} listName={listData.listname} storesData={listData.storesData} selectFavorite={this.props.selectFavorite.bind(this)} />);
+        return this.props.favoriteList.map((list) => {
+            let props = {
+                auth: this.props.auth,
+                key: list.listname_id,
+                listName: list.listname,
+                listNameId: list.listname_id,
+                selectFavorite: this.props.selectFavorite.bind(this),
+                storesData: list.storesData,
+                updateFavoriteList: this.props.updateFavoriteList.bind(this)
+            };
+            return (<FavoriteList {...props} />);
         });
     }
 

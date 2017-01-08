@@ -1,4 +1,5 @@
 import React from 'react';
+import Api from '../Api';
 
 import ListItem from './ListItem';
 
@@ -13,8 +14,18 @@ class FavoriteList extends React.Component {
         this.setState({ isOpen });
     }
 
-    removeStoreFromFavorite() {
-        console.log('remove store from favorite');
+    deleteFavoriteList() {
+        Api.deleteFavoriteList(this.props.listNameId, this.props.auth.token)
+            .done(() => {
+                this.props.updateFavoriteList();
+            });
+    }
+
+    deleteStoreFromFavorite(data) {
+        Api.deleteStoreFromFavoriteList(data.favlistId, this.props.auth.token)
+            .done(() => {
+                this.props.updateFavoriteList();
+            });
     }
 
     selectFavorite() {
@@ -26,7 +37,7 @@ class FavoriteList extends React.Component {
             return (<li>無</li>);
         }
         return this.props.storesData.map((storeData) => {
-            return (<ListItem key={storeData.listId} data={storeData} unselectStore={this.removeStoreFromFavorite.bind(this)} />);
+            return (<ListItem key={storeData.id} data={storeData} unselectStore={this.deleteStoreFromFavorite.bind(this)} />);
         });
     }
 
@@ -39,7 +50,7 @@ class FavoriteList extends React.Component {
             <ul>
                 <div onClick={this.changeListOpenState.bind(this)}>{this.props.listName}</div>
                 <button onClick={this.selectFavorite.bind(this)}>+</button>
-                <button>x</button>
+                <button onClick={this.deleteFavoriteList.bind(this)}>x</button>
                 {favoriteList}
             </ul>
         );

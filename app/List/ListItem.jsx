@@ -10,10 +10,14 @@ class ListItem extends React.Component {
         this.props.unselectStore(this.props.data);
     }
 
+    showStoreInfo() {
+        $(`.store-${this.props.data.id}.info.modal`).modal('show');
+    }
+
     render() {
         return (
             <li>
-                <div>
+                <div onClick={this.showStoreInfo.bind(this)}>
                     {this.props.data.name}
                 </div>
                 <div className="shake-ani">

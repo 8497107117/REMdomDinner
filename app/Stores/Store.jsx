@@ -106,9 +106,10 @@ class Store extends React.Component {
     render() {
         return (
             <div className="store">
-                <div>
-                    <div>{this.props.data.name}</div>
-                    <img src={this.props.data.url} alt={this.props.data.name} />
+                <div className="store-desc">
+                    <img src={this.props.data.url} alt="" />
+                    <div className="store-name">{this.props.data.name}</div>
+                    <div className="store-ani"></div>
                 </div>
                 <div className="add" onClick={this.selectStore.bind(this)}>
                     <i className="checkmark box icon large"></i>

@@ -18,6 +18,12 @@ class List extends React.Component {
                 $.tab('change tab', 'favorite');
             });
         $('.tab-thinking').trigger('click');
+
+        $('.ui.random-result.modal').modal({
+            allowMultiple: false,
+            onApprove: () => {
+            }
+        });
     }
 
     addFavoriteList(event) {
@@ -90,12 +96,18 @@ class List extends React.Component {
     }
 
     renderRandomStore() {
-        if (Object.keys(this.props.randomStore).length === 0 && this.props.randomStore.constructor === Object) {
-            return <div>請選擇</div>;
-        }
-        else {
-            return <div>去吃{this.props.randomStore.name}吧！</div>;
-        }
+        return (
+            <div className="ui basic random-result modal">
+                <div className="header">去吃{this.props.randomStore.name}吧！</div>
+                <div className="actions">
+                    <div className="two fluid ui inverted buttons">
+                        <div className="ui ok green basic inverted button">
+                            <i className="map icon"></i>Google Map
+					    </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     render() {
@@ -104,15 +116,14 @@ class List extends React.Component {
                 <button className="tab-thinking" data-tab="thinking">思考中</button>
                 <button className="tab-favorite" data-tab="favorite">最愛</button>
                 <div className="ui tab" data-tab="favorite">
-                    {this.renderFavoriteList()}
                 </div>
                 <div className="ui tab" data-tab="thinking">
-                    {this.renderRandomStore()}
                     {this.renderListButton()}
                     < ul >
                         {this.renderListItem()}
                     </ul >
                 </div>
+                {this.renderRandomStore()}
             </div>
         );
     }

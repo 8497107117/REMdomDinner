@@ -33,29 +33,29 @@ class AddStoreForm extends React.Component {
                 type.store = store;
                 this.setState({ type });
             });
-        $('.ui.basic.add-store.form.modal')
+        $('.add-store.form.modal')
             .modal({
                 allowMultiple: false,
                 onApprove: () => {
                     Api.addStore(this.state.data, this.props.auth.token)
                         .done((data) => {
-                            this.props.afterAdd();
+                            this.props.updateStoreData();
                             this.clearInput();
                         })
                         .fail(() => {
-                            $('.ui.small.basic.add-store.warning.modal').modal('show');
+                            $('.add-store.warning.modal').modal('show');
                         });
                 },
                 onDeny: () => {
                     this.clearInput();
-                },
+                }
             });
-        $('.ui.small.basic.add-store.warning.modal')
+        $('.add-store.warning.modal')
             .modal({
                 allowMultiple: false,
                 closable: false,
                 onApprove: () => {
-                    $('.ui.basic.add-store.form.modal').modal('show');
+                    $('.add-store.form.modal').modal('show');
                 }
             });
     }
@@ -71,7 +71,7 @@ class AddStoreForm extends React.Component {
                 tid: ''
             }
         });
-        $(".ui.basic.add-store.form.modal input").val('');
+        $(".add-store.form.modal input").val('');
     }
 
     handleChange(event) {

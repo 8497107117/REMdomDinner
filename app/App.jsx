@@ -52,6 +52,7 @@ class App extends React.Component {
                 if (data)
                     this.setState({ storesData: data });
             });
+        /* update selected */
     }
 
     login(data, token) {
@@ -148,7 +149,7 @@ class App extends React.Component {
         };
         let storesProps = {
             auth: this.state.auth,
-            update: this.getStoresData.bind(this),
+            updateStoreData: this.getStoresData.bind(this),
             selectStore: this.selectStore.bind(this),
             storesData : this.state.storesData
         }

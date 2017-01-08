@@ -9,11 +9,11 @@ class Stores extends React.Component {
     }
 
     showAddForm() {
-        $('.ui.basic.add-store.form.modal').modal('show');
+        $('.add-store.form.modal').modal('show');
     }
 
-    updateStoresData() {
-        this.props.update();
+    updateStoreData() {
+        this.props.updateStoreData();
     }
 
     renderAddButton() {
@@ -24,7 +24,7 @@ class Stores extends React.Component {
 
     renderAddForm() {
         if (this.props.auth.isLogin) {
-            return <AddStoreForm auth={this.props.auth} afterAdd={this.updateStoresData.bind(this)} />;
+            return <AddStoreForm auth={this.props.auth} updateStoreData={this.updateStoreData.bind(this)} />;
         }
     }
 
@@ -35,8 +35,8 @@ class Stores extends React.Component {
                 auth: this.props.auth,
                 data: storeData,
                 selectStore: this.props.selectStore.bind(this),
-                afterUpdate: this.updateStoresData.bind(this),
-                afterDelete: this.updateStoresData.bind(this)
+                updateStoreData: this.updateStoreData.bind(this),
+                deleteStoreData: this.updateStoreData.bind(this)
             };
             return (<Store {...storeProps} />);
         });

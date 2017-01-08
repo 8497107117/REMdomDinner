@@ -104,14 +104,6 @@ class List extends React.Component {
     }
 
     renderRandomStore() {
-<<<<<<< HEAD
-        if (Object.keys(this.props.randomStore).length === 0 && this.props.randomStore.constructor === Object) {
-            return <div>請選擇</div>;
-        }
-        else {
-            return <div>去吃{this.props.randomStore.name}吧！</div>;
-        }
-=======
         let mapSrc =`http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.randomStore.address}&z=16&output=embed&t=`;
         return (
             <div className="ui basic random-result modal">
@@ -121,7 +113,6 @@ class List extends React.Component {
                 </div>
             </div>
         );
->>>>>>> b80d4ea4e85ea02ec95ebfd7dabdee54c04918d5
     }
 
     render() {

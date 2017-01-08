@@ -107,11 +107,15 @@ function getAreaType() {
         });
 }
 
-function getStoresData() {
-    return $.ajax({
+function getStoresData(keyword) {
+    let config = {
         url: `${HOST}/stores/list/`,
         method: 'GET'
-    })
+    };
+    if (keyword) {
+        config.data = { keyword };
+    }
+    return $.ajax(config)
         .done((data) => {
             return data;
         });

@@ -1,13 +1,79 @@
 @mixin list(){
     display: inline-block;
+    position: relative;
     width: 50%;
     height: 100%;
     overflow: hidden;
     vertical-align: top;
     background: rgba(206, 206, 255, 0.5);
 
+    .tab-thinking{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 5%;
+    }
+
+    .tab-favorite{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 5%;
+    }
+    
+    .thinking{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        .list-exec{
+            position: absolute;
+            top: 5%;
+            left: 0;
+            width: 50%;
+            height: 5%;
+
+
+            .random{
+                width: 50%;
+                height: 100%;
+            }
+
+            .clear{
+                width: 50%;
+                height: 100%;
+            }
+
+        }
+        .add-list-form{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5%;
+
+            input{
+                width: 80%;
+                height: 100%;
+                display: inline-block;
+            }
+
+            button{
+                width: 20%;
+                height: 100%;
+                display: inline-block;
+            }
+        }
+    }
+
+
     ul{
         list-style: none;
+        margin-top: 10%;
 
         li{
             text-align: center;

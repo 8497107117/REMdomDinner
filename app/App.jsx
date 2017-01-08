@@ -43,7 +43,6 @@ class App extends React.Component {
         Api.getFavoriteLists(this.state.auth.token)
             .done((favoriteList) => {
                 this.setState({ favoriteList });
-                console.log(this.state.favoriteList);
             });
     }
 

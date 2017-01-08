@@ -24,7 +24,7 @@ class List extends React.Component {
         event.preventDefault();
         Api.addFavoriteList(this.refs.listname.value, this.props.auth.token)
             .done((data) => {
-                $('#add-list-form').val('');
+                $('#add-list-form input').val('');
                 let sid = [];
                 this.props.storesData.map((storeData) => {
                     sid.push(storeData.id);
@@ -32,8 +32,7 @@ class List extends React.Component {
                 Api.addStoreToFavoriteList(data.id.toString(), sid, this.props.auth.token)
                     .done(() => {
                         this.props.updateFavoriteList();
-                    })
-                    .fail((data) => { console.log(data) });
+                    });
             })
             .fail(() => {
                 $('#add-list-form').val('');

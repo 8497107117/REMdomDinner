@@ -11,7 +11,9 @@ class AddToFavoriteList extends React.Component {
             .modal({
                 allowMultiple: false,
                 onApprove: () => {
-                    Api.addStoreToFavoriteList(this.refs.favList.value, this.props.data.id, this.props.auth.token)
+                    let sid = [];
+                    sid.push(this.props.data.id);
+                    Api.addStoreToFavoriteList(this.refs.favList.value, sid, this.props.auth.token)
                         .done((data) => {
                             this.props.updateFavoriteList();
                         });

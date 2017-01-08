@@ -48,7 +48,7 @@ class Stores extends React.Component {
     render() {
         return (
             <div className="stores">
-                <div className="fluid ui olive fade animated button stores-up" tabindex="0">
+                <div className="fluid ui olive fade animated button stores-up" tabIndex="0">
                     <div className="hidden content">Prev</div>
                     <div className="visible content">
                         <i className="large angle double up icon"></i>
@@ -59,7 +59,7 @@ class Stores extends React.Component {
                 <div className="stores-inner">
                     {this.renderStoresData()}
                 </div>
-                <div className="fluid ui olive fade animated button stores-down" tabindex="0">
+                <div className="fluid ui olive fade animated button stores-down" tabIndex="0">
                     <div className="hidden content">Next</div>
                     <div className="visible content">
                         <i className="large angle double down icon"></i>

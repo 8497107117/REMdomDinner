@@ -14,7 +14,12 @@ class Stores extends React.Component {
 
     renderAddButton() {
         if (this.props.auth.isLogin) {
-            return <button onClick={this.showAddForm.bind(this)}>+</button>;
+            return (<div className="ui blue animated button add-store" onClick={this.showAddForm.bind(this)}>
+                        <div className="visible content">
+                            <i className="large plus icon"></i>
+                        </div>
+                        <div className="hidden content">Add</div>
+                    </div>);
         }
     }
 
@@ -43,13 +48,23 @@ class Stores extends React.Component {
     render() {
         return (
             <div className="stores">
-                <div className="stores-up">上</div>
+                <div className="fluid ui olive fade animated button stores-up" tabindex="0">
+                    <div className="hidden content">Prev</div>
+                    <div className="visible content">
+                        <i className="large angle double up icon"></i>
+                    </div>
+                </div> 
                 {this.renderAddButton()}
                 {this.renderAddForm()}
                 <div className="stores-inner">
                     {this.renderStoresData()}
                 </div>
-                <div className="stores-down">下</div>
+                <div className="fluid ui olive fade animated button stores-down" tabindex="0">
+                    <div className="hidden content">Next</div>
+                    <div className="visible content">
+                        <i className="large angle double down icon"></i>
+                    </div>
+                </div> 
             </div>
         );
     }

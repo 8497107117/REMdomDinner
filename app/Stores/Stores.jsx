@@ -11,7 +11,7 @@ class Stores extends React.Component {
 
     nextPage() {
         let page = this.state.page;
-        if (this.props.storesData.length >= (page + 1) * 9 + 1) {
+        if (this.props.storesData.length >= (page + 1) * 12 + 1) {
             page++;
             this.setState({ page });
         }
@@ -55,7 +55,7 @@ class Stores extends React.Component {
 
     renderStoresData() {
         return this.props.storesData.map((storeData, index) => {
-            if (index >= this.state.page * 9 && index < (this.state.page + 1) * 9) {
+            if (index >= this.state.page * 12 && index < (this.state.page + 1) * 12) {
                 let storeProps = {
                     key: storeData.id,
                     auth: this.props.auth,
